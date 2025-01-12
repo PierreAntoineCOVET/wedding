@@ -2,6 +2,8 @@
   <div class="content">
     <h3>Infos pour TOUT LE MONDE : </h3>
 
+    <p>{{ t('hello') }}</p>
+
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis dui at efficitur varius. Integer ut dapibus metus, at efficitur enim.
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus rhoncus luctus nisi auctor convallis.
@@ -34,6 +36,9 @@
 
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n();
   
   import HomePartial from './HomePartial.vue'
   import HomeFull from './HomeFull.vue'
