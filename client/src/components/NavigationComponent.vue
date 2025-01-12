@@ -80,7 +80,6 @@
   }
 
   function getActivePageFromRouteName(path: string): ActivePage {
-    console.log(path);
     switch (path) {
       case '/':
         return ActivePage.Home;
@@ -97,7 +96,7 @@
 <style scoped>
   .navigation {
     padding: 1rem 0.5rem;
-    background-color: rgba(255, 182, 193, .6);
+    background-color: #d9b0b6;
     border-radius: 15px;
     backdrop-filter: blur(5px);
     display: flex;

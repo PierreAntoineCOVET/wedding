@@ -2,8 +2,6 @@
   <NavigationComponent />
 
   <main class="scroll-container">
-    <!--<TheWelcome />-->
-    <!--<HomeGeneric />-->
     <RouterView />
   </main>
 </template>
@@ -12,31 +10,13 @@
   import NavigationComponent from './components/NavigationComponent.vue'
 </script>
 
-<style scoped>
-/*header {
-  line-height: 1.5;
-}
+<style lang="scss">
+  $primary: #669999;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+  @import "../node_modules/bootstrap/scss/bootstrap";
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  .btn,
+  .btn:hover {
+    color: #fff;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}*/
 </style>

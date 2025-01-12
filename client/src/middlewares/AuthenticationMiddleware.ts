@@ -55,6 +55,6 @@ export class AuthenticationMiddleware {
       next('/');
     }
 
-    return next;
+    return next();
   }
 }
