@@ -1,12 +1,12 @@
 <template>
-  <div v-if="!loggedUser">
-    <input type="text" v-model="loginText" @keyup.enter="authenticate()" placeholder="Code de connection" />
-    <input type="button" value="Connexion" @click="authenticate()" class="logging-button" />
+  <div v-if="!loggedUser" class="loggin-group">
+    <input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" placeholder="Code de connection" />
+    <input type="button" value="Connexion" @click="authenticate()" class="logging-button btn btn-primary" />
   </div>
 
   <div v-else>
     Connecté en tant que {{ loggedUser.name }}.
-    <input type="button" @click="unconnect()" value="Deconnexion" class="logging-button" />
+    <input type="button" @click="unconnect()" value="Deconnexion" class="logging-button btn btn-primary" />
   </div>
 </template>
 
@@ -64,6 +64,10 @@
 </script>
 
 <style scoped>
+  .loggin-group {
+      display: flex;
+  }
+
   .logging-button {
     margin-left: 1rem;
   }
