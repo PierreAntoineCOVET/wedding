@@ -128,3 +128,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Custom
+/.vs
+/client/.vscode
+/client/obj
+/Server/bin
+/Server/obj
+/Server/aer.db-shm
+/Server/aer.db-wal
