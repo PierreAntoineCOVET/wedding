@@ -8,6 +8,6 @@ export enum AccessGroup {
 
 export type User = {
   id: number,
-  name: string,
+  userName: string,
   accessGroup: AccessGroup
 }

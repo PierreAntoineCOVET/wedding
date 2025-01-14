@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using AerDbContext = Server.Models.AerDbContext;
 using AccessGroup = Server.Models.AccessGroup;
-using UserModel = Server.Models.User;
-using UserDto = Server.DTOs.User;
+using Server.Models;
+using Server.DTOs;
 
 namespace Server.Controllers
 {
@@ -19,20 +19,23 @@ namespace Server.Controllers
         }
 
         [HttpGet("users")]
-        public async Task<IEnumerable<UserDto>> Get()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IEnumerable<UserLight>> Get()
         {
             var users = await AerDbContext.Users.ToListAsync();
 
-            return users.Select(u => new UserDto
+            return users.Select(u => new UserLight
             {
-                Name = $"{u.FirstName}.{u.LastName}",
+                UserName = u.UserName,
                 AccessGroup = u.AccessGroup,
                 Id = u.Id
             });
         }
 
-        [HttpGet("user")]
-        public async Task<UserDto?> Get(string userName)
+        [HttpGet("user/{userName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<UserLight?> Get(string userName)
         {
             var user = await AerDbContext.Users.FirstOrDefaultAsync(u => u.UserName == userName);
 
@@ -41,9 +44,9 @@ namespace Server.Controllers
                 return null;
             }
 
-            return new UserDto
+            return new UserLight
             {
-                Name = $"{user.FirstName}.{user.LastName}",
+                UserName = user.UserName,
                 AccessGroup = user.AccessGroup,
                 Id = user.Id
             };
@@ -52,7 +55,7 @@ namespace Server.Controllers
         [HttpPost("user")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(UserDto user)
+        public async Task<IActionResult> Post(UserFull user)
         {
             if (!Enum.IsDefined(typeof(AccessGroup), user.AccessGroup))
             {
@@ -61,16 +64,43 @@ namespace Server.Controllers
 
             try
             {
-                await AerDbContext.Users.AddAsync(new UserModel
+                await AerDbContext.Users.AddAsync(new User
                 {
-                    FirstName = "first",
-                    LastName = user.Name,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
                     AccessGroup = user.AccessGroup
                 });
 
                 await AerDbContext.SaveChangesAsync();
 
                 return Created();
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Db update exception");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpDelete("user/{userId}")]
+        public async Task Delete(int userId)
+        {
+            try
+            {
+                var dbUSer = await AerDbContext.Users.SingleOrDefaultAsync(u => u.Id == userId);
+
+                if(dbUSer == null)
+                {
+                    return;
+                }
+
+                AerDbContext.Users.Remove(dbUSer);
+
+                await AerDbContext.SaveChangesAsync();
             }
             catch (Exception)
             {

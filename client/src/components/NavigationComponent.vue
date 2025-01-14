@@ -35,9 +35,9 @@
       </li>
       <li class="nav-item" v-if="loggedUser && loggedUser.accessGroup == AccessGroup.admin">
         <RouterLink class="nav-link"
-                    :class="{'active': activePage == ActivePage.Form}"
-                    to="/form"
-                    @Click="navigate(ActivePage.Form)">
+                    :class="{'active': activePage == ActivePage.Admin}"
+                    to="/admin"
+                    @Click="navigate(ActivePage.Admin)">
           {{ t('nav.admin') }}
         </RouterLink>
       </li>
@@ -51,7 +51,8 @@
     Home,
     Schedule,
     Info,
-    Form
+    Form,
+    Admin
   }
 
   import { ref, onMounted, inject } from 'vue';
@@ -84,7 +85,7 @@
     eventBus.on('loggin', (user: User | null) => {
       loggedUser.value = user;
 
-      if(user === null && activePage.value == ActivePage.Full) {
+      if(user === null && activePage.value == ActivePage.Admin) {
         activePage.value = ActivePage.Home;
         router.push('/');
       }

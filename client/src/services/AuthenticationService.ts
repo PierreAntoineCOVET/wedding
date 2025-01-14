@@ -9,7 +9,7 @@ export class AuthenticationService {
   async authenticate(userCode: string): Promise<User | null> {
 
     try {
-      const response = await axios.get<User>(`http://localhost:5000/user/user?userName=${userCode}`);
+      const response = await axios.get<User>(`http://localhost:5000/user/user/${userCode}`);
 
       if (response.status == 200) {
         return response.data;

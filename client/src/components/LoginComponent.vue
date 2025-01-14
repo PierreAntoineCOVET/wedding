@@ -5,7 +5,7 @@
   </div>
 
   <div v-else>
-    {{ t('login.loginAs') }} {{ loggedUser.name }}.
+    {{ t('login.loginAs') }} {{ loggedUser.userName }}
     <input type="button" @click="unconnect()" :value="t('login.logout')" class="logging-button btn btn-primary" />
   </div>
 </template>
