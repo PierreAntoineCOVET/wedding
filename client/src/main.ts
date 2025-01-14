@@ -17,6 +17,7 @@ const eventBus = mitt();
 app.provide('eventBus', eventBus);
 
 const i18n = createI18n({
+  legacy: false,
   locale: navigator.language,
   fallbackLocale: 'en',
   messages: {

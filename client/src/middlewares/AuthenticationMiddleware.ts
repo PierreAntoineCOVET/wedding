@@ -7,9 +7,9 @@ export class AuthenticationMiddleware {
   private authenticationService: AuthenticationService;
   private router: Router;
 
-  constructor() {
+  constructor(router: Router) {
     this.authenticationService = new AuthenticationService();
-    this.router = useRouter();
+    this.router = router;
   }
 
   async authenticate(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) {

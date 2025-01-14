@@ -22,13 +22,12 @@ const routes = [
   }
 ]
 
-const authenticationMiddleware = new AuthenticationMiddleware();
-
 const router = createRouter({
   history: createWebHistory(),
   routes,
 })
 
+const authenticationMiddleware = new AuthenticationMiddleware(router);
 router.beforeEach((to, from, next) => { authenticationMiddleware.authenticate(to, from, next)});
 
 export default router
