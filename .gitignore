@@ -137,3 +137,6 @@ dist
 /Server/obj
 /Server/aer.db-shm
 /Server/aer.db-wal
+/obj/Docker
+/bin/Debug
+/obj/Debug
