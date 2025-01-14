@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Models;
 
@@ -10,9 +11,11 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(AerDbContext))]
-    partial class AerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250114185517_BetterUser")]
+    partial class BetterUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,13 +45,11 @@ namespace Server.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LastName");
-
-                    b.HasIndex("UserName");
 
                     b.HasIndex("FirstName", "LastName")
                         .IsUnique();

@@ -3,11 +3,11 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "Server\\Server.csproj",
+        "Path": "Client\\client.esproj",
         "Action": "Start"
       },
       {
-        "Path": "Client\\client.esproj",
+        "Path": "docker-compose.dcproj",
         "Action": "Start"
       }
     ]

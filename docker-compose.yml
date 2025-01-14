@@ -1,0 +1,50 @@
+services:
+
+  server:
+    image: ${DOCKER_REGISTRY-}server
+    hostname: 'aerserver'
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - 5000:8080
+    networks:
+      - myNetwork
+
+  db:
+    image: mysql:8.0
+    hostname: 'aerdb'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'db'
+    expose:
+      - '3306'
+# Port to localhost should not be on prod
+    ports:
+      - 3306:3306
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - myNetwork
+      
+# PhpMyAdmin container should not be on prod
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    hostname: 'phpmyadmin'
+    environment:
+      - PMA_HOST=aerdb
+      - PMA_PORT=3306
+    ports:
+      - 8080:80
+    networks:
+      - myNetwork
+
+volumes:
+  my-db:
+    external: true
+
+networks:
+  myNetwork:

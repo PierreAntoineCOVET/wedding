@@ -1,11 +1,7 @@
-﻿namespace Server.Model
-{
-    public enum AccessGroup
-    {
-        Partial,
-        Full
-    }
+﻿using Server.Models;
 
+namespace Server.DTOs
+{
     public class User
     {
         public int Id { get; set; }

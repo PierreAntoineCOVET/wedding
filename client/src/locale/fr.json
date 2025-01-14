@@ -1,3 +1,15 @@
 {
-  "hello": "Bonjour"
+  "nav": {
+    "home": "Accueil",
+    "schedule": "Emploi du temps",
+    "info": "Informations",
+    "form": "Formulaire",
+    "admin": "Admin"
+  },
+  "login": {
+    "loginAs": "Connecté en tant que",
+    "logout": "Deconnexion",
+    "login": "Connexion",
+    "userNamePlaceHolder": "Nom d'utilisateur"
+  }
 }

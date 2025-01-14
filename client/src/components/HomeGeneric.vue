@@ -2,8 +2,6 @@
   <div class="content">
     <h3>Infos pour TOUT LE MONDE : </h3>
 
-    <p>{{ t('hello') }}</p>
-
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis dui at efficitur varius. Integer ut dapibus metus, at efficitur enim.
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus rhoncus luctus nisi auctor convallis.
@@ -28,25 +26,21 @@
     </p>
   </div>
 
-  <HomePartial v-if="loggedUser && loggedUser.accessGroup == AccessType.partial" />
+  <HomePartial v-if="loggedUser && loggedUser.accessGroup == AccessGroup.partial" />
 
-  <!--<HomeFull />-->
-  <HomeFull v-if="loggedUser && loggedUser.accessGroup == AccessType.full" />
+  <HomeFull v-if="loggedUser && loggedUser.accessGroup == AccessGroup.full" />
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
-  import { useI18n } from 'vue-i18n'
-
-  const { t } = useI18n();
   
   import HomePartial from './HomePartial.vue'
   import HomeFull from './HomeFull.vue'
-  import { User, AccessType } from '../models/user'
+  import { type User, AccessGroup } from '../models/user'
   import { AuthenticationService } from '../services/AuthenticationService';
 
-  const loggedUser = ref<User | undefined>();
-  const eventBus = inject('eventBus');
+  const loggedUser = ref<User | null>(null);
+  const eventBus = inject('eventBus') as any;
 
   onMounted(() => {
     const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
@@ -55,7 +49,7 @@
     }
 
 
-    eventBus.on('loggin', (user) => {
+    eventBus.on('loggin', (user: User | null) => {
       loggedUser.value = user;
     });
   })

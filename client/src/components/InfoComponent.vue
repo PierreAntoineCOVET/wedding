@@ -1,5 +1,5 @@
 <template>
-  La page custom des full
+  <h3>Info</h3>
 </template>
 
 <script setup lang="ts">

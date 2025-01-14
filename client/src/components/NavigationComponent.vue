@@ -6,51 +6,69 @@
                     :class="{'active': activePage == ActivePage.Home}"
                     to="/"
                     @Click="navigate(ActivePage.Home)">
-          Accueil
+          {{ t('nav.home') }}
         </RouterLink>
       </li>
       <li class="nav-item">
         <RouterLink class="nav-link"
-                    :class="{'active': activePage == ActivePage.About}"
-                    to="/about"
-                    @Click="navigate(ActivePage.About)">
-          A propos
+                    :class="{'active': activePage == ActivePage.Schedule}"
+                    to="/schedule"
+                    @Click="navigate(ActivePage.Schedule)">
+          {{ t('nav.schedule') }}
         </RouterLink>
       </li>
       <li class="nav-item">
         <RouterLink class="nav-link"
-                    :class="{'active': activePage == ActivePage.Full}"
-                    v-if="loggedUser && loggedUser.accessGroup == AccessType.full"
-                    to="/full"
-                    @Click="navigate(ActivePage.Full)">
-          Custom Full
+                    :class="{'active': activePage == ActivePage.Info}"
+                    to="/info"
+                    @Click="navigate(ActivePage.Info)">
+          {{ t('nav.info') }}
+        </RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink class="nav-link"
+                    :class="{'active': activePage == ActivePage.Form}"
+                    to="/form"
+                    @Click="navigate(ActivePage.Form)">
+          {{ t('nav.form') }}
+        </RouterLink>
+      </li>
+      <li class="nav-item" v-if="loggedUser && loggedUser.accessGroup == AccessGroup.admin">
+        <RouterLink class="nav-link"
+                    :class="{'active': activePage == ActivePage.Form}"
+                    to="/form"
+                    @Click="navigate(ActivePage.Form)">
+          {{ t('nav.admin') }}
         </RouterLink>
       </li>
     </ul>
-    <Loggin />
+    <Login />
   </nav>
 </template>
 
 <script setup lang="ts">
   enum ActivePage {
     Home,
-    About,
-    Full
+    Schedule,
+    Info,
+    Form
   }
 
   import { ref, onMounted, inject } from 'vue';
   import { useRouter, useRoute } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
 
-  import Loggin from './LogginComponent.vue'
-  import { AccessType } from '../models/user'
+  import Login from './LoginComponent.vue'
+  import { type User, AccessGroup } from '../models/user'
   import { AuthenticationService } from '../services/AuthenticationService';
 
   const router = useRouter();
   const route = useRoute();
+  const { t } = useI18n();
 
-  const loggedUser = ref<User | undefined>();
+  const loggedUser = ref<User | null>();
   const activePage = ref<ActivePage>();
-  const eventBus = inject('eventBus');
+  const eventBus = inject('eventBus') as any;
 
 
 
@@ -63,7 +81,7 @@
       loggedUser.value = JSON.parse(loggedUserString);
     }
 
-    eventBus.on('loggin', (user) => {
+    eventBus.on('loggin', (user: User | null) => {
       loggedUser.value = user;
 
       if(user === null && activePage.value == ActivePage.Full) {
@@ -75,18 +93,20 @@
     activePage.value = getActivePageFromRouteName(route.fullPath);
   })
 
-  function navigate(activePage: ActivePage) {
-    this.activePage = activePage;
+  function navigate(targetPage: ActivePage) {
+    activePage.value = targetPage;
   }
 
   function getActivePageFromRouteName(path: string): ActivePage {
     switch (path) {
       case '/':
         return ActivePage.Home;
-      case '/about':
-        return ActivePage.About;
-      case '/full':
-        return ActivePage.Full;
+      case '/schedule':
+        return ActivePage.Schedule;
+      case '/info':
+        return ActivePage.Info;
+      case '/form':
+        return ActivePage.Form;
       default:
         return ActivePage.Home;
     }

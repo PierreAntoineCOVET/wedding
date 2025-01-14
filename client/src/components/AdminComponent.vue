@@ -1,5 +1,5 @@
 <template>
-  La page about
+  <h3>Admin</h3>
 </template>
 
 <script setup lang="ts">

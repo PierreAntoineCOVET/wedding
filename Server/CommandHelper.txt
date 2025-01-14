@@ -1,0 +1,11 @@
+﻿# Add a new migration after some model change
+Add-Migration <name>
+
+# Upgrade the DB to latest migration
+Update-Database
+
+# Create a volume for persistable data (not cleared when removed container)
+docker volume create my-db
+
+# Create a common docker network for the containers
+docker network create mynetwork

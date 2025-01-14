@@ -1,7 +1,7 @@
 import { type RouteLocationNormalized, type RouteLocationNormalizedLoaded, type NavigationGuardNext, type Router, useRouter } from 'vue-router'
 
 import { AuthenticationService } from '../services/AuthenticationService'
-import { AccessType } from '../models/user'
+import { type User, AccessGroup } from '../models/user'
 
 export class AuthenticationMiddleware {
   private authenticationService: AuthenticationService;
@@ -42,16 +42,16 @@ export class AuthenticationMiddleware {
     }
   }
 
-  guardAccess(accesToCheck: AccessType, next: NavigationGuardNext) {
+  guardAccess(accesToCheck: AccessGroup, next: NavigationGuardNext) {
     const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
 
     if (!loggedUserString) {
       next('/');
     }
 
-    const loggedUser = JSON.parse(loggedUserString);
+    const loggedUser = JSON.parse(loggedUserString as string) as User;
 
-    if (!loggedUser.accessGroup === accesToCheck) {
+    if (loggedUser.accessGroup !== accesToCheck) {
       next('/');
     }
 

@@ -1,19 +1,24 @@
 import { createWebHistory, createRouter, type NavigationGuardNext, type RouteLocationNormalized, type RouteLocationNormalizedLoaded } from 'vue-router'
 
 import HomeGeneric from './components/HomeGeneric.vue'
-import AboutComponent from './components/AboutComponent.vue'
-import FullComponent from './components/FullComponent.vue'
+import Schedule from './components/ScheduleComponent.vue'
+import Info from './components/InfoComponent.vue'
+import Form from './components/FormComponent.vue'
+import Admin from './components/AdminComponent.vue'
+
 import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware'
-import { AccessType } from './models/user'
+import { AccessGroup } from './models/user'
 
 const routes = [
   { path: '/', component: HomeGeneric },
-  { path: '/about', component: AboutComponent },
+  { path: '/schedule', component: Schedule },
+  { path: '/info', component: Info },
+  { path: '/form', component: Form },
   {
-    path: '/full',
-    component: FullComponent,
+    path: '/admin',
+    component: Admin,
     beforeEnter: (to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) =>
-      { return authenticationMiddleware.guardAccess(AccessType.full, next) }
+      { return authenticationMiddleware.guardAccess(AccessGroup.admin, next) }
   }
 ]
 
