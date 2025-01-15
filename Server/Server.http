@@ -22,16 +22,7 @@ Content-Type: application/json
 
 ###
 
-POST {{Server_HostAddress}}/user/user
-Content-Type: application/json
-
-{
-  "name": "partial",
-  "AccessGroup": 0
-}
-
-###
-
 DELETE {{Server_HostAddress}}/user/user/1
 Content-Type: application/json
 
+###

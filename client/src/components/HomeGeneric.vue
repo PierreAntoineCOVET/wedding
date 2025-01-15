@@ -26,9 +26,9 @@
     </p>
   </div>
 
-  <HomePartial v-if="loggedUser && loggedUser.accessGroup == AccessGroup.partial" />
+  <!--<HomePartial v-if="loggedUser && loggedUser.accessGroup == AccessGroup.partial" />
 
-  <HomeFull v-if="loggedUser && loggedUser.accessGroup == AccessGroup.full" />
+  <HomeFull v-if="loggedUser && loggedUser.accessGroup == AccessGroup.full" />-->
 </template>
 
 <script setup lang="ts">
