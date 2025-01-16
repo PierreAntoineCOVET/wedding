@@ -9,7 +9,8 @@ export class AuthenticationService {
   async authenticate(userCode: string): Promise<User | null> {
 
     try {
-      const response = await axios.get<User>(`${import.meta.env.VITE_HOST_URI}user/user/${userCode}`);
+      const url = `${import.meta.env.VITE_HOST_URI}api/user/${userCode}`;
+      const response = await axios.get<User>(url);
 
       if (response.status == 200) {
         return response.data;

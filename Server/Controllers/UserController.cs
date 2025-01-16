@@ -8,7 +8,7 @@ using Server.DTOs;
 namespace Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly AerDbContext AerDbContext;
@@ -32,7 +32,7 @@ namespace Server.Controllers
             });
         }
 
-        [HttpGet("user/{userName}")]
+        [HttpGet("{userName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<UserLight?> Get(string userName)
@@ -52,7 +52,7 @@ namespace Server.Controllers
             };
         }
 
-        [HttpPost("user")]
+        [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(UserFull user)
@@ -86,7 +86,7 @@ namespace Server.Controllers
             }
         }
 
-        [HttpDelete("user/{userId}")]
+        [HttpDelete("{userId}")]
         public async Task Delete(int userId)
         {
             try

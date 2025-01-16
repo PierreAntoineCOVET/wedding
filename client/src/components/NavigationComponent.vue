@@ -68,7 +68,7 @@
   const { t } = useI18n();
 
   const loggedUser = ref<User | null>();
-  const activePage = ref<ActivePage>();
+  const activePage = ref<ActivePage | null>();
   const eventBus = inject('eventBus') as any;
 
 
@@ -98,7 +98,7 @@
     activePage.value = targetPage;
   }
 
-  function getActivePageFromRouteName(path: string): ActivePage {
+  function getActivePageFromRouteName(path: string): ActivePage | null {
     switch (path) {
       case '/':
         return ActivePage.Home;
@@ -109,7 +109,7 @@
       case '/form':
         return ActivePage.Form;
       default:
-        return ActivePage.Home;
+        return null;
     }
   }
 </script>

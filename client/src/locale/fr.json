@@ -11,5 +11,6 @@
     "logout": "Deconnexion",
     "login": "Connexion",
     "userNamePlaceHolder": "Nom d'utilisateur"
-  }
+  },
+  "notfound": "Page non trouvée."
 }

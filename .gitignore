@@ -140,3 +140,4 @@ dist
 /obj/Docker
 /bin/Debug
 /obj/Debug
+/client/client.esproj.user

@@ -37,7 +37,13 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.Map("api/{**slug}", HandleApiFallback);
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+Task HandleApiFallback(HttpContext context)
+{
+    context.Response.StatusCode = StatusCodes.Status404NotFound;
+    return Task.CompletedTask;
+}

@@ -11,5 +11,6 @@
     "logout": "Log out",
     "login": "Log in",
     "userNamePlaceHolder": "User name"
-  }
+  },
+  "notfound": "Page not found."
 }
