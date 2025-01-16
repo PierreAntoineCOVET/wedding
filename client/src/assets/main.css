@@ -25,8 +25,36 @@ html {
   }
 }*/
 
-/*@media (min-width: 1024px) {
-  body {
+/* Apply while screen witdh it more that 1740 */
+/*@media (min-width: 1740px) {
+    body {
+        background-image: url('Background-left.jpg'), url('Background-right.jpg');
+    }*/
+
+/*    .hidden-for-desktop {
+        display: none;
+    }*/
+/*}*/
+
+/* Apply while screen witdh it more that 1024 */
+@media (min-width: 1024px) {
+    body {
+        background-image: url('Background-left.jpg'), url('Background-right.jpg');
+    }
+
+    /*    .hidden-for-desktop {
+        display: none;
+    }*/
+}
+
+/* Apply while screen witdh it less that 1024 */
+@media (max-width: 1024px) {
+
+/*    .hidden-for-phone {
+        display: none;
+    }*/
+
+    /*  body {
     display: flex;
     place-items: center;
   }
@@ -35,5 +63,5 @@ html {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
-  }
-}*/
+  }*/
+}

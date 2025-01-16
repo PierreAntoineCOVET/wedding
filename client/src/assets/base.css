@@ -54,8 +54,7 @@
 body {
     min-height: 100vh;
     color: var(--color-text);
-    /*background: var(--color-background);*/
-    background-image: url('Background-left.jpg'), url('Background-right.jpg');
+    background: var(--color-background);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left, right;
