@@ -1,16 +1,16 @@
-@Server_HostAddress = http://localhost:5000
+@Server_HostAddress = http://localhost:5000/api
 
-GET {{Server_HostAddress}}/api/user/users
+GET {{Server_HostAddress}}/user/users
 Accept: application/json
 
 ###
 
-GET {{Server_HostAddress}}/api/user/pa.covet
+GET {{Server_HostAddress}}/user/pa.covet
 Accept: application/json
 
 ###
 
-POST {{Server_HostAddress}}/api/user
+POST {{Server_HostAddress}}/user
 Content-Type: application/json
 
 {
@@ -22,10 +22,15 @@ Content-Type: application/json
 
 ###
 
-DELETE {{Server_HostAddress}}/api/user/1
+DELETE {{Server_HostAddress}}/user/4
 Content-Type: application/json
 
 ###
 
-GET {{Server_HostAddress}}/api/nawak
+GET {{Server_HostAddress}}/nawak
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/user/search/cov
 Accept: application/json

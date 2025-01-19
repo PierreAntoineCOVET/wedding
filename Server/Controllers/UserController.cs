@@ -24,12 +24,7 @@ namespace Server.Controllers
         {
             var users = await AerDbContext.Users.ToListAsync();
 
-            return users.Select(u => new UserLight
-            {
-                UserName = u.UserName,
-                AccessGroup = u.AccessGroup,
-                Id = u.Id
-            });
+            return users.Select(user => new UserLight(user));
         }
 
         [HttpGet("{userName}")]
@@ -44,12 +39,18 @@ namespace Server.Controllers
                 return null;
             }
 
-            return new UserLight
-            {
-                UserName = user.UserName,
-                AccessGroup = user.AccessGroup,
-                Id = user.Id
-            };
+            return new UserLight(user);
+        }
+
+        [HttpGet("search/{query}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IEnumerable<UserLight>> Search(string query)
+        {
+            var users = await AerDbContext.Users
+                .Where(u => EF.Functions.Like(u.LastName, $"%{query}%"))
+                .ToListAsync();
+
+            return users.Select(user => new UserLight(user));
         }
 
         [HttpPost()]

@@ -50,7 +50,7 @@
         </ul>
 
 
-        <Login class="d-flex" />
+        <Login />
       </div>
     </div>
   </nav>
