@@ -8,15 +8,12 @@
 
 <script setup lang="ts">
   import NavigationComponent from './components/NavigationComponent.vue'
+  import 'bootstrap/dist/js/bootstrap.min.js'
+  //import "@popperjs/core/dist/umd/popper.min.js"
 </script>
 
 <style lang="scss">
   $primary: #669999;
 
-  @import "../node_modules/bootstrap/scss/bootstrap";
-
-  .btn,
-  .btn:hover {
-    color: #fff;
-  }
+  @import "bootstrap/scss/bootstrap";
 </style>

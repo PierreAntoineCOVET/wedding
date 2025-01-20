@@ -42,15 +42,16 @@ namespace Server.Controllers
             return new UserLight(user);
         }
 
-        [HttpGet("search/{query}")]
+        [HttpGet("search")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IEnumerable<UserLight>> Search(string query)
+        public async Task<IEnumerable<AutocompleteItem>> Search(string query)
         {
             var users = await AerDbContext.Users
-                .Where(u => EF.Functions.Like(u.LastName, $"%{query}%"))
+                .Where(user => EF.Functions.Like(user.LastName, $"%{query}%"))
+                .Select(user => new AutocompleteItem { Label = user.LastName, Value = user.Id.ToString() })
                 .ToListAsync();
 
-            return users.Select(user => new UserLight(user));
+            return users;
         }
 
         [HttpPost()]

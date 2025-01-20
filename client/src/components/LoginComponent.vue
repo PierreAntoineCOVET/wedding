@@ -11,11 +11,11 @@
 </template>
 
 <script setup lang="ts">
-  import { AuthenticationService } from '../services/AuthenticationService';
   import { ref, onMounted, inject } from 'vue';
   import { useRouter } from 'vue-router'
   import { useI18n } from 'vue-i18n'
 
+  import { AuthenticationService } from '../services/AuthenticationService';
   import { type User } from '../models/user'
 
   const authenticationService = new AuthenticationService();
@@ -73,5 +73,10 @@
 
   .logging-button {
     margin-left: 1rem;
+  }
+
+  .btn,
+  .btn:hover {
+    color: #fff;
   }
 </style>

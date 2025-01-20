@@ -32,5 +32,5 @@ Accept: application/json
 
 ###
 
-GET {{Server_HostAddress}}/user/search/cov
+GET {{Server_HostAddress}}/user/search?query=cov
 Accept: application/json
