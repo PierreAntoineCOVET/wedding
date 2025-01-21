@@ -1,14 +1,14 @@
 
 import axios from 'axios';
 
-import { type User } from '../models/user'
+import { type AutocompleteItem } from '../models/autocompleteItem'
 
 export class UserService {
-  async search(userQuery: string): Promise<User[]> {
+  async search(userQuery: string): Promise<AutocompleteItem[]> {
 
     try {
-      const url = `${import.meta.env.VITE_HOST_URI}user/search/${userQuery}`;
-      const response = await axios.get<User[]>(url);
+      const url = `${import.meta.env.VITE_HOST_URI}user/search?query=${userQuery}`;
+      const response = await axios.get<AutocompleteItem[]>(url);
 
       if (response.status == 200) {
         return response.data;
