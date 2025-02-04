@@ -24,24 +24,24 @@ services:
     expose:
       - '3306'
 # Port to localhost should not be on prod
-    # ports:
-    #   - 3306:3306
+    ports:
+      - 3306:3306
     volumes:
       - my-db:/var/lib/mysql
     networks:
       - myNetwork
       
-# # PhpMyAdmin container should not be on prod
-#   phpMyAdmin:
-#     image: phpmyadmin/phpmyadmin:5.2
-#     hostname: 'phpmyadmin'
-#     environment:
-#       - PMA_HOST=aerdb
-#       - PMA_PORT=3306
-#     ports:
-#       - 8080:80
-#     networks:
-#       - myNetwork
+# PhpMyAdmin container should not be on prod
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    hostname: 'phpmyadmin'
+    environment:
+      - PMA_HOST=aerdb
+      - PMA_PORT=3306
+    ports:
+      - 8080:80
+    networks:
+      - myNetwork
 
 volumes:
   my-db:

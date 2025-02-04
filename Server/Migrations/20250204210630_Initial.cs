@@ -20,11 +20,15 @@ namespace Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LastName = table.Column<string>(type: "varchar(255)", nullable: false)
+                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FirstName = table.Column<string>(type: "varchar(255)", nullable: false)
+                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AccessGroup = table.Column<int>(type: "int", nullable: false)
+                    UserName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Invitation = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -42,6 +46,11 @@ namespace Server.Migrations
                 name: "IX_Users_LastName",
                 table: "Users",
                 column: "LastName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName");
         }
 
         /// <inheritdoc />

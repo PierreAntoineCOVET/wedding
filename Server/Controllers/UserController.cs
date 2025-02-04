@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AerDbContext = Server.Models.AerDbContext;
-using AccessGroup = Server.Models.AccessGroup;
-using Server.Models;
+using Roles = Server.Models.Roles;
+using UserModel = Server.Models.User;
+using UserDto = Server.DTOs.User;
 using Server.DTOs;
 
 namespace Server.Controllers
@@ -20,17 +21,17 @@ namespace Server.Controllers
 
         [HttpGet("users")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IEnumerable<UserLight>> Get()
+        public async Task<IEnumerable<UserDto>> Get()
         {
             var users = await AerDbContext.Users.ToListAsync();
 
-            return users.Select(user => new UserLight(user));
+            return users.Select(user => UserDto.FromModel(user));
         }
 
         [HttpGet("{userName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<UserLight?> Get(string userName)
+        public async Task<UserDto?> Get(string userName)
         {
             var user = await AerDbContext.Users.FirstOrDefaultAsync(u => u.UserName == userName);
 
@@ -39,7 +40,7 @@ namespace Server.Controllers
                 return null;
             }
 
-            return new UserLight(user);
+            return UserDto.FromModel(user);
         }
 
         [HttpGet("search")]
@@ -57,21 +58,22 @@ namespace Server.Controllers
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(UserFull user)
+        public async Task<IActionResult> Post(UserDto user)
         {
-            if (!Enum.IsDefined(typeof(AccessGroup), user.AccessGroup))
+            if (!Enum.IsDefined(typeof(Roles), user.Role))
             {
                 return BadRequest("Invalid enum value");
             }
 
             try
             {
-                await AerDbContext.Users.AddAsync(new User
+                await AerDbContext.Users.AddAsync(new UserModel
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
-                    AccessGroup = user.AccessGroup
+                    Role = user.Role,
+                    Invitation = user.Invitation,
                 });
 
                 await AerDbContext.SaveChangesAsync();

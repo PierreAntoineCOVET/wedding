@@ -17,7 +17,8 @@ Content-Type: application/json
   "firstName": "PA",
   "lastName": "COVET",
   "userName": "pa.covet",
-  "AccessGroup": 4
+  "role": 1,
+  "Invitation": "11111"
 }
 
 ###

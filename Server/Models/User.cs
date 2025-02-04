@@ -1,11 +1,8 @@
 ﻿namespace Server.Models
 {
-    public enum AccessGroup
+    public enum Roles
     {
-        Tuesday,
-        Wednesday,
-        TuesdayToThursday,
-        Full,
+        User,
         Admin
     }
 
@@ -20,8 +17,10 @@
 
         public required string FirstName { get; set; }
 
-        public string UserName { get; set; }
+        public required string UserName { get; set; }
 
-        public AccessGroup AccessGroup { get; set; }
+        public required Roles Role { get; set; }
+
+        public required string Invitation {  get; set; }
     }
 }

@@ -42,17 +42,17 @@ html {
         background-image: url('Background-left.jpg'), url('Background-right.jpg');
     }
 
-    /*    .hidden-for-desktop {
+    .hidden-for-desktop {
         display: none;
-    }*/
+    }
 }
 
 /* Apply while screen witdh it less that 1024 */
 @media (max-width: 1024px) {
 
-/*    .hidden-for-phone {
+    .hidden-for-phone {
         display: none;
-    }*/
+    }
 
     /*  body {
     display: flex;

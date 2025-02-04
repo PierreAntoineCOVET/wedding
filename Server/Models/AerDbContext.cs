@@ -9,8 +9,8 @@ namespace Server.Models
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             /// For applying migrations
-            //var connectionString = "server=localhost;user=root;database=db;password=password;";
-            var connectionString = "server=aerdb;user=root;database=db;password=password;";
+            //var connectionString = "server=localhost;user=root;database=aerdb;password=password;";
+            var connectionString = "server=aerdb;user=root;database=aerdb;password=password;";
             var serverVersion = ServerVersion.AutoDetect(connectionString);
 
             options.UseMySql(connectionString, serverVersion);
@@ -19,14 +19,31 @@ namespace Server.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .HasIndex(e => new { e.FirstName, e.LastName })
+                .HasKey(user => user.Id);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(user => new { user.FirstName, user.LastName })
                 .IsUnique();
 
             modelBuilder.Entity<User>()
-                .HasIndex(e => e.LastName);
+                .HasIndex(user => user.LastName);
+            modelBuilder.Entity<User>()
+                .Property(user => user.LastName)
+                .HasMaxLength(50);
 
             modelBuilder.Entity<User>()
-                .HasIndex(e => e.UserName);
+                .Property(user => user.FirstName)
+                .HasMaxLength(50);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(user => user.UserName);
+            modelBuilder.Entity<User>()
+                .Property(user => user.UserName)
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<User>()
+                .Property(user => user.Invitation)
+                .HasMaxLength(5);
 
             base.OnModelCreating(modelBuilder);
         }

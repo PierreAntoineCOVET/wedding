@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "schedule": "Timetable",
+    "schedule": "Schedule",
     "info": "Infos",
     "form": "Form",
     "admin": "Admin"
@@ -12,5 +12,50 @@
     "login": "Log in",
     "userNamePlaceHolder": "User name"
   },
-  "notfound": "Page not found."
+  "notfound": "Page not found.",
+  "home": {
+    "title": "Bonjour et bienvenue !",
+    "p1": "Après une longue réflexion... sur la date, hiver au froid ou été au chaud, nous avons finalement décidé de nous marier au mois d’Août prochain !",
+    "p2": "Aussi, et parce que vous êtes important pour nous, nous avons souhaité vous convier pour partager ce moment que nous espérons mémorable !",
+    "p3": "Dans l’attente de vous voir (oui venez ! ça sera plus simple d’être là, plutôt que l’on soit obligé de tout vous raconter après) nous avons préparé des petites pages (ci-dessus dans les onglets) qui répondrons théoriquement à toutes les questions que vous pourriez avoir.",
+    "p4": "Chacun d’entre vous dispose d’un accès personnel pour se connecter (suivez simplement l’instruction du faire part que vous avez reçu !",
+    "p5": "Afin de confirmer votre présence pensez à vous connecter individuellement et valider votre présence (Si vous avez une âme de secrétaire, vous pouvez le faire pour vos conjoints et enfants en vous connectant avec leur identifiant)",
+    "p6": "Il y a aussi plusieurs petites questions auxquelles il faut nous répondre en quelques clics pour nous aider à organiser notre mariage !",
+    "p7": "Une chose très importante : vous avez jusqu’au 27 avril 2025 pour confirmer votre présence ou votre absence. A partir du 28 avril, sans réponse de votre part, on en conclura que vous ne viendrez pas ! On compte sur vous, grâce à votre réactivité, moins de stress et une organisation simplifiée.",
+    "p8": "N’hésitez pas à passer sur le site de temps en temps, il sera actualisé en fonction des diverses questions auxquelles on n’aurait pas pensé !",
+    "p9": "On vous dit à très vite !",
+    "p10": "Amandine et Romain"
+  },
+  "schedule": {
+    "p1": "Bon alors qu’est ce qui va se passer et comment ça va se passer ?",
+    "p2": "Tout d’abord, attention à la date ! Nous avons décidé de nous marier mais en SEMAINE ! (oui on aime bien faire les choses différemment).",
+    "tuesday": {
+      "p1": "Le mardi 5 août 2025",
+      "p2": "14h15 : Rendez-vous à la Marie de Goncelin (38), ou sera célébré notre mariage civile à 14h30.",
+      "p3": "(Soyez à l’heure, ça serait dommage de rater l’instant officiel !)",
+      "p4": "Pour vous garer plusieurs parkings sont disponibles.",
+      "parking1": {
+        "libelle": "Parking 1",
+        "info": "En face de la Mairie"
+      },
+      "parking2": {
+        "libelle": "Parking 2",
+        "info": "Dans la même zone proche de la gare SNCF"
+      },
+      "parking3": {
+        "libelle": "Parking 3",
+        "info": "Dans la même zone proche de la gare SNCF (2 bornes recharge pour véhicule sont disponibles à cet endroit)"
+      },
+      "p5": "15h30 : Départ pour le lieu de réception : Le domaine de la Pierre à Sel (73)",
+      "p6": "16h30 : Arrivée et installation sur le lieu de réception (le temps de trajet est estimé à 45 minutes depuis la Mairie)",
+      "p7": "Itinéraire",
+      "p8": "Le trajet est de 43 minutes est le plus simple pour l’accès sur le site. Celui de 44 minutes vous permettra d’apprécier la vue de la vallée et des gorges d’Allevard avant de prendre la direction de la Vallée des Huiles.",
+      "p9": "Le lieu : Domaine de la Pierre à Sel : ",
+      "p10": "17h30 : On prend la pose ! Vous n’aimez pas les photos, tant pis, c’est comme Dorian vous n’aurez pas vraiment le choix ! Faudrait pas contrarier la mariée quand même, elle adore les photos (des autres) !",
+      "p11": "18h45 : Si vous êtes sages pendant les photos, possible qu’on vous offre l’apéritif !",
+      "p12": "20h00 : L’heure du diner ! Faites vos jeux ! Vous avez un choix cornélien à faire (ici sur le site) entre un plat à base de fromage et de vin (oui vous avez bien compris qu’il s’agit d’une fondue savoyarde mais on fait semblant de garder la surprise) OU un mélange de viandes (là c’est plus dur à deviner – mix de viandes à la plancha).",
+      "p13": "Et après le repas, petite soirée tranquille !",
+      "p14": "On vous veut en forme pour le lendemain, alors ne prévoit rien de très recherché ce premier soir"
+    }
+  }
 }

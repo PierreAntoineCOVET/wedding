@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter, type NavigationGuardNext, type RouteLocationNormalized, type RouteLocationNormalizedLoaded } from 'vue-router'
 
-import HomeGeneric from './components/HomeGeneric.vue'
+import HomeComponent from './components/HomeComponent.vue'
 import Schedule from './components/ScheduleComponent.vue'
 import Info from './components/InfoComponent.vue'
 import Form from './components/FormComponent.vue'
@@ -11,7 +11,7 @@ import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware
 import { AccessGroup } from './models/user'
 
 const routes = [
-  { path: '/', component: HomeGeneric },
+  { path: '/', component: HomeComponent },
   { path: '/schedule', component: Schedule },
   { path: '/info', component: Info },
   { path: '/form', component: Form },

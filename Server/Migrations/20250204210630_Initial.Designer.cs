@@ -11,8 +11,8 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(AerDbContext))]
-    [Migration("20250114185517_BetterUser")]
-    partial class BetterUser
+    [Migration("20250204210630_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,24 +32,34 @@ namespace Server.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccessGroup")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Invitation")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("varchar(5)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LastName");
+
+                    b.HasIndex("UserName");
 
                     b.HasIndex("FirstName", "LastName")
                         .IsUnique();
