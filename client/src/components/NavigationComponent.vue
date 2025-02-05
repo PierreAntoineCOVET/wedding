@@ -12,7 +12,7 @@
                         :class="{'active': activePage == ActivePage.Home}"
                         to="/"
                         @Click="navigate(ActivePage.Home)">
-              {{ t('nav.home') }}
+              {{ $t('nav.home') }}
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -20,7 +20,7 @@
                         :class="{'active': activePage == ActivePage.Schedule}"
                         to="/schedule"
                         @Click="navigate(ActivePage.Schedule)">
-              {{ t('nav.schedule') }}
+              {{ $t('nav.schedule') }}
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -28,7 +28,7 @@
                         :class="{'active': activePage == ActivePage.Info}"
                         to="/info"
                         @Click="navigate(ActivePage.Info)">
-              {{ t('nav.info') }}
+              {{ $t('nav.info') }}
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -36,15 +36,23 @@
                         :class="{'active': activePage == ActivePage.Form}"
                         to="/form"
                         @Click="navigate(ActivePage.Form)">
-              {{ t('nav.form') }}
+              {{ $t('nav.form') }}
             </RouterLink>
           </li>
-          <li class="nav-item" v-if="loggedUser && loggedUser.accessGroup == AccessGroup.admin">
+          <li class="nav-item">
+            <RouterLink class="nav-link"
+                        :class="{'active': activePage == ActivePage.Contact}"
+                        to="/contact"
+                        @Click="navigate(ActivePage.Contact)">
+              {{ $t('nav.contact') }}
+            </RouterLink>
+          </li>
+          <li class="nav-item" v-if="loggedUser && loggedUser.role == Roles.admin">
             <RouterLink class="nav-link"
                         :class="{'active': activePage == ActivePage.Admin}"
                         to="/admin"
                         @Click="navigate(ActivePage.Admin)">
-              {{ t('nav.admin') }}
+              {{ $t('nav.admin') }}
             </RouterLink>
           </li>
         </ul>
@@ -62,20 +70,19 @@
     Schedule,
     Info,
     Form,
+    Contact,
     Admin
   }
 
   import { ref, onMounted, inject } from 'vue';
   import { useRouter, useRoute } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
 
   import Login from './LoginComponent.vue'
-  import { type User, AccessGroup } from '../models/user'
+  import { type User, Roles } from '../models/user'
   import { AuthenticationService } from '../services/AuthenticationService';
 
   const router = useRouter();
   const route = useRoute();
-  const { t } = useI18n();
 
   const loggedUser = ref<User | null>();
   const activePage = ref<ActivePage | null>();
@@ -118,6 +125,8 @@
         return ActivePage.Info;
       case '/form':
         return ActivePage.Form;
+      case '/contact':
+        return ActivePage.Contact;
       default:
         return null;
     }

@@ -30,7 +30,7 @@
   import { type AutocompleteItem } from '../models/autocompleteItem'
   
   const searchInput = ref<string | null>(null);
-  const isLoading = ref<bool>(false);
+  const isLoading = ref<boolean>(false);
   const searchResults = ref<AutocompleteItem[]>([]);
   const selectedItem = ref<AutocompleteItem | null>(null);
 
@@ -45,7 +45,7 @@
   }
 
   function select(result: AutocompleteItem) {
-    if (result.value < 0) {
+    if (result.value == "-1") {
       return;
     }
 
@@ -56,9 +56,7 @@
     searchResults.value = [];
   }
 
-  watch(searchInput, debounce(async (newSeach: string) => {
-    searchUser(newSeach);
-  }, 500));
+  watch(searchInput, debounce(async (newSeach) => { searchUser(newSeach); }, 500));
 
   async function searchUser(query: string) {
     if (!query || selectedItem.value) {
@@ -70,7 +68,7 @@
     const results = await userService.search(query);
 
     if (results.length == 0) {
-      results.push({ value: -1, label: 'no match found' });
+      results.push({ value: "-1", label: 'no match found' });
     }
 
     searchResults.value = results;

@@ -1,19 +1,18 @@
 <template>
   <div v-if="!loggedUser" class="loggin-group">
-    <input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" :placeholder="t('login.userNamePlaceHolder')" />
-    <input type="button" :value="t('login.login')" @click="authenticate()" class="logging-button btn btn-primary" />
+    <input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" :placeholder="$t('login.userNamePlaceHolder')" />
+    <input type="button" :value="$t('login.login')" @click="authenticate()" class="logging-button btn btn-primary" />
   </div>
 
   <div v-else>
-    {{ t('login.loginAs') }} {{ loggedUser.userName }}
-    <input type="button" @click="unconnect()" :value="t('login.logout')" class="logging-button btn btn-primary" />
+    {{ $t('login.loginAs') }} {{ loggedUser.userName }}
+    <input type="button" @click="unconnect()" :value="$t('login.logout')" class="logging-button btn btn-primary" />
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
   import { useRouter } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
 
   import { AuthenticationService } from '../services/AuthenticationService';
   import { type User } from '../models/user'
@@ -25,7 +24,6 @@
 
   const router = useRouter();
   const eventBus = inject('eventBus') as any;
-  const { t } = useI18n();
 
   onMounted(async () => {
     await router.isReady();

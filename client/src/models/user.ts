@@ -1,13 +1,13 @@
-export enum AccessGroup {
-  tuesday,
-  wednesday,
-  tuesdayToThursday,
-  full,
+export enum Roles {
+  user,
   admin
 }
 
 export type User = {
   id: number,
   userName: string,
-  accessGroup: AccessGroup
+  role: Roles,
+  firstName: string,
+  lastName: string,
+  invitation: string
 }

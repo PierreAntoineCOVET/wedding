@@ -1,60 +1,31 @@
 <template>
-  <div class="content">
-    <h3>{{ t('home.title') }}</h3>
+  <div>
+    <h3>Bonjour et bienvenue !</h3>
 
-    <p>{{ t('home.p1') }}</p>
+    <p>Après une longue réflexion... sur la date, hiver au froid ou été au chaud, nous avons finalement décidé de nous marier au mois d’Août prochain !</p>
 
-    <p>{{ t('home.p2') }}</p>
+    <p>Aussi, et parce que vous êtes important pour nous, nous avons souhaité vous convier pour partager ce moment que nous espérons mémorable !</p>
 
-    <p>{{ t('home.p3') }}</p>
+    <p>Dans l’attente de vous voir (oui venez ! ça sera plus simple d’être là, plutôt que l’on soit obligé de tout vous raconter après) nous avons préparé des petites pages (ci-dessus dans les onglets) qui répondrons théoriquement à toutes les questions que vous pourriez avoir.</p>
 
-    <p>{{ t('home.p4') }}</p>
+    <p>Chacun d’entre vous dispose d’un accès personnel pour se connecter (suivez simplement l’instruction du faire part que vous avez reçu !</p>
 
-    <p>{{ t('home.p5') }}</p>
+    <p>Afin de confirmer votre présence pensez à vous connecter individuellement et valider votre présence (Si vous avez une âme de secrétaire, vous pouvez le faire pour vos conjoints et enfants en vous connectant avec leur identifiant)</p>
 
-    <p>{{ t('home.p6') }}</p>
+    <p>Il y a aussi plusieurs petites questions auxquelles il faut nous répondre en quelques clics pour nous aider à organiser notre mariage !</p>
 
-    <p>{{ t('home.p7') }}</p>
+    <p>Une chose très importante : vous avez jusqu’au 27 avril 2025 pour confirmer votre présence ou votre absence. A partir du 28 avril, sans réponse de votre part, on en conclura que vous ne viendrez pas ! On compte sur vous, grâce à votre réactivité, moins de stress et une organisation simplifiée.</p>
 
-    <p>{{ t('home.p8') }}</p>
+    <p>N’hésitez pas à passer sur le site de temps en temps, il sera actualisé en fonction des diverses questions auxquelles on n’aurait pas pensé !</p>
 
-    <p>{{ t('home.p9') }}</p>
+    <p>On vous dit à très vite !</p>
 
-    <p>{{ t('home.p10') }}</p>
+    <p>Amandine et Romain</p>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, inject } from 'vue';
-  import { useI18n } from 'vue-i18n'
-  
-  import { type User, AccessGroup } from '../models/user'
-  import { AuthenticationService } from '../services/AuthenticationService';
-
-  const loggedUser = ref<User | null>(null);
-  const eventBus = inject('eventBus') as any;
-  const { t } = useI18n();
-
-  onMounted(() => {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
-    if (loggedUserString) {
-      loggedUser.value = JSON.parse(loggedUserString);
-    }
-
-
-    eventBus.on('loggin', (user: User | null) => {
-      loggedUser.value = user;
-    });
-  })
 </script>
 
 <style scoped>
-
-  .content {
-      text-align: left;
-  }
-
-  p {
-      margin-bottom: 1rem;
-  }
 </style>
