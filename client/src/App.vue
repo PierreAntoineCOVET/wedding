@@ -1,5 +1,7 @@
 <template>
-  <NavigationComponent />
+  <div id="nav-container">
+    <NavigationComponent id="always-on-top" />
+  </div>
 
   <main class="scroll-container">
     <RouterView />
@@ -16,4 +18,16 @@
   $primary: #669999;
 
   @import "bootstrap/scss/bootstrap";
+
+  #always-on-top {
+    z-index: 100;
+  }
+
+  #nav-container {
+      padding-top: 1rem;
+      padding-bottom: .1rem;
+      top: 0;
+      position: sticky;
+      background-color: white;
+  }
 </style>
