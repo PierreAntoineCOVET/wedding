@@ -9,3 +9,9 @@ docker volume create my-db
 
 # Create a common docker network for the containers
 docker network create mynetwork
+
+# Backup db volume
+docker run --rm -v my-db:/vackup-volume -v C:\Users\pierr\dockerVolumesBackup:/vackup busybox tar -zcvf /vackup/mydb.tar /vackup-volume
+
+# Restore db volume
+docker run --rm -v my-db:/vackup-volume -v /home/pierreantoine/dockerVolumesBackup:/vackup busybox tar -xvzf /vackup/mydb.tar -C /
