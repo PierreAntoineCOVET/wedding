@@ -22,37 +22,54 @@
     </p>
   </div>
 
-  <p>
-    11h : A vos mouchoirs, on a prévu une petite cérémonie laïque. Vous pourrez pleurer d’émotion
-    (certes c’est surfait), de rire (plus de chance) ou d’ennuie si jamais on s’est lancé dans des discours
-    qui ne s’arrêtent plus (fort peu probable) !
-  </p>
+  <div class="schedule-grid">
+    <div class="time">11h00</div>
+    <div class="info">
+      <p>
+        A vos mouchoirs, on a prévu une petite cérémonie laïque. Vous pourrez pleurer d’émotion
+        (certes c’est surfait), de rire (plus de chance) ou d’ennuie si jamais on s’est lancé dans des discours
+        qui ne s’arrêtent plus (fort peu probable) !
+      </p>
+    </div>
 
-  <p>
-    12h00 : On passe aux choses sérieuses ! Et on démarre avec le traditionnel vin d’honneur (ne vous
-    inquiétez pas, on n’a pas oublié les glaçons).
-  </p>
+    <div class="time">12h00</div>
+    <div class="info">
+      <p>
+        On passe aux choses sérieuses ! Et on démarre avec le traditionnel vin d’honneur (ne vous
+        inquiétez pas, on n’a pas oublié les glaçons).
+      </p>
 
-  <p>Dans la foulée, on vous servira à manger (On pense à votre énergie).</p>
+      <p>Dans la foulée, on vous servira à manger (On pense à votre énergie).</p>
 
-  <p>
-    Dans l’après-midi : Temps photos (la mariée aime bien les photos et certains seront déjà marqués par
-    les épreuves du vin d’honneur, autres boissons et auront des têtes somme toute très mémorables)
-  </p>
+      <p>
+        Dans l’après-midi : Temps photos (la mariée aime bien les photos et certains seront déjà marqués par
+        les épreuves du vin d’honneur, autres boissons et auront des têtes somme toute très mémorables)
+      </p>
 
-  <p>Temps libre ! Jeux, jeux en bois, parties de pétanque, balades en montagne, SPA, sauna ...</p>
+      <p>Temps libre ! Jeux, jeux en bois, parties de pétanque, balades en montagne, SPA, sauna ...</p>
+    </div>
+      
+    <div class="time">18h30</div>
+    <div class="info">
+      <p>
+        Parce que c’est notre truc de jeunes qui commencent à devenir vieux et qu’on aime bien les
+        traditions françaises,(oui ça va les plus anciens on a compris vous ne vous sentez pas concernés)
+        APERO !
+      </p>
+    </div>
+      
+    <div class="time">20h00</div>
+    <div class="info">
+      <p>Des petites choses à manger (au cas où vous ayez encore un peu faim)</p>
+    </div>
+      
+    <div class="time">21h30</div>
+    <div class="info">
+      <p>La traditionnelle pièce montée !</p>
 
-  <p>
-    18h30 : Parce que c’est notre truc de jeunes qui commencent à devenir vieux et qu’on aime bien les
-    traditions françaises,(oui ça va les plus anciens on a compris vous ne vous sentez pas concernés)
-    APERO !
-  </p>
-
-  <p>20h00 : Des petites choses à manger (au cas où vous ayez encore un peu faim)</p>
-
-  <p>21h30 : La traditionnelle pièce montée !</p>
-
-  <p>Fin de soirée en musique ou en jeux, c’est comme vous voulez !</p>
+      <p>Fin de soirée en musique ou en jeux, c’est comme vous voulez !</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -62,4 +79,10 @@
 </script>
 
 <style scoped>
+  @media (min-width: 1024px) {
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 55px auto;
+    }
+  }
 </style>

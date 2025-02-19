@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using AerDbContext = Server.Models.AerDbContext;
 using Roles = Server.Models.Roles;
-using UserModel = Server.Models.User;
 using UserDto = Server.DTOs.User;
 using Server.DTOs;
 
@@ -67,14 +66,7 @@ namespace Server.Controllers
 
             try
             {
-                await AerDbContext.Users.AddAsync(new UserModel
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserName = user.UserName,
-                    Role = user.Role,
-                    Invitation = user.Invitation,
-                });
+                await AerDbContext.Users.AddAsync(UserDto.ToModel(user));
 
                 await AerDbContext.SaveChangesAsync();
 

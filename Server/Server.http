@@ -23,8 +23,26 @@ Content-Type: application/json
 
 ###
 
-DELETE {{Server_HostAddress}}/user/4
+DELETE {{Server_HostAddress}}/user/3
 Content-Type: application/json
+
+###
+
+GET {{Server_HostAddress}}/form/forms
+Accept: application/json
+
+###
+
+POST {{Server_HostAddress}}/form
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "confirmedDays": "01111",
+  "mealChoice": 2,
+  "foodAllergy": null,
+  "musicRecommendation": "TSR Gros !"
+}
 
 ###
 

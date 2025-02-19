@@ -6,6 +6,17 @@
         Admin
     }
 
+    [Flags]
+    public enum Days
+    {
+        None = 0,
+        Monday = 16,
+        Tuesday = 8,
+        Wednesday = 4,
+        Thursday = 2,
+        Friday = 1
+    }
+
     public class User
     {
         public int Id { get; set; }
@@ -21,6 +32,8 @@
 
         public required Roles Role { get; set; }
 
-        public required string Invitation {  get; set; }
+        public required Days Invitation {  get; set; }
+
+        public Form? Form { get; set; }
     }
 }

@@ -6,6 +6,8 @@ namespace Server.Models
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Form> Forms { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             /// For applying migrations
@@ -18,32 +20,51 @@ namespace Server.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasKey(user => user.Id);
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(user => user.Id);
 
-            modelBuilder.Entity<User>()
-                .HasIndex(user => new { user.FirstName, user.LastName })
-                .IsUnique();
+                entity.HasIndex(user => new { user.FirstName, user.LastName })
+                    .IsUnique();
 
-            modelBuilder.Entity<User>()
-                .HasIndex(user => user.LastName);
-            modelBuilder.Entity<User>()
-                .Property(user => user.LastName)
-                .HasMaxLength(50);
+                entity.HasIndex(user => user.LastName);
+                entity.Property(user => user.LastName)
+                    .HasMaxLength(50);
 
-            modelBuilder.Entity<User>()
-                .Property(user => user.FirstName)
-                .HasMaxLength(50);
+                entity.Property(user => user.FirstName)
+                    .HasMaxLength(50);
 
-            modelBuilder.Entity<User>()
-                .HasIndex(user => user.UserName);
-            modelBuilder.Entity<User>()
-                .Property(user => user.UserName)
-                .HasMaxLength(100);
+                entity.HasIndex(user => user.UserName);
+                entity.Property(user => user.UserName)
+                    .HasMaxLength(100);
 
-            modelBuilder.Entity<User>()
-                .Property(user => user.Invitation)
-                .HasMaxLength(5);
+                entity.Property(user => user.Invitation)
+                    .HasColumnType("INT");
+
+                entity.HasOne(user => user.Form)
+                    .WithOne(form => form.User)
+                    .HasForeignKey<Form>(form => form.UserId);
+            });
+
+            modelBuilder.Entity<Form>(entity =>
+            {
+                entity.HasKey(form => form.Id);
+
+                //entity.Property(form => form.ConfirmedDays)
+                //    .HasColumnType("INT");
+
+                //entity.Property(form => form.MealChoice)
+                //    .HasColumnType("INT");
+
+                entity.Property(form => form.FoodAllergy)
+                    .HasMaxLength(300);
+
+                entity.Property(form => form.MusicRecommendation)
+                    .HasMaxLength(500);
+
+                entity.Property(form => form.Other)
+                    .HasMaxLength(500);
+            });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -27,7 +27,20 @@ namespace Server.DTOs
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Role = userModel.Role,
-                Invitation = userModel.Invitation
+                Invitation = Convert.ToString((int)userModel.Invitation, 2)
+            };
+        }
+
+        public static UserModel ToModel(User user)
+        {
+            return new UserModel
+            {
+                Id = user.Id ?? 0,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Role = user.Role,
+                Invitation = (Models.Days)Convert.ToInt32(user.Invitation, 2),
             };
         }
     }

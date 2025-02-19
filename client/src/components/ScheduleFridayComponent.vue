@@ -13,9 +13,14 @@
     toutes nos petites affaires
   </p>
 
-  <p>
-    11h : Clap de fin, snif ! Il faut partir !
-  </p>
+  <div class="schedule-grid">
+    <div class="time">11h00</div>
+    <div class="info">
+      <p>
+        Clap de fin, snif ! Il faut partir !
+      </p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -25,4 +30,10 @@
 </script>
 
 <style scoped>
+  @media (min-width: 1024px) {
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 55px auto;
+    }
+  }
 </style>
