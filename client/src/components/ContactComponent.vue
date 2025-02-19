@@ -1,20 +1,20 @@
 <template>
   <p>
-    <h6>Les parents de la mariée :</h6>
+    <h5>Les parents de la mariée :</h5>
     <div>Bruno et Valérie Arnaud</div>
     <div>2 Le clos du Moulin 38570 Goncelin FR</div>
     <div>arnaud_vb@hotmail.fr</div>
     <div>Bruno : +33695730027 Valérie : +33695993605</div>
   </p>
   <p>
-    <h6>Les parents du marié :</h6>
+    <h5>Les parents du marié :</h5>
     <div>Claude et Marie Noëlle Mounier</div>
     <div>130 Route des Crêtes 26260 Arthemonay</div>
     <div>claude-mounier@orange.fr</div>
     <div>Claude : +33677404411 Marie Noëlle : +33689413668</div>
   </p>
   <p>
-    <h6>Les témoins d’Amandine :</h6>
+    <h5>Les témoins d’Amandine :</h5>
     <ul>
       <li>
         <div>Pierre-Antoine Covet (Speaks English even if this accent is soooo frenchy)</div>
@@ -31,7 +31,7 @@
     </ul>
   </p>
   <p>
-    <h6>Les témoins de Romain :</h6>
+    <h5>Les témoins de Romain :</h5>
     <ul>
       <li>
         <div>Alexis Mounier</div>
@@ -46,7 +46,7 @@
     </ul>
   </p>
   <p>
-    <h6>La muse en charge de la Cérémonie Laïque</h6>
+    <h5>La muse en charge de la Cérémonie Laïque</h5>
     <div>Elodie Raposo (she speaks English too !)</div>
     <div>+33677523663</div>
   </p>
