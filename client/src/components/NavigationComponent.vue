@@ -78,7 +78,7 @@
   import { useRouter, useRoute } from 'vue-router'
 
   import Login from './LoginComponent.vue'
-  import { type User, Roles } from '../models/user'
+  import { type User, Roles } from '../models/User'
   import { AuthenticationService } from '../services/AuthenticationService';
 
   const router = useRouter();
@@ -87,8 +87,6 @@
   const loggedUser = ref<User | null>();
   const activePage = ref<ActivePage | null>();
   const eventBus = inject('eventBus') as any;
-
-
 
   onMounted(async () => {
     await router.isReady();

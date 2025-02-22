@@ -138,7 +138,7 @@
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
 
-  import { type User } from '../models/user'
+  import { type User } from '../models/User'
   import { AuthenticationService } from '../services/AuthenticationService';
 
   const loggedUser = ref<User | null>(null);

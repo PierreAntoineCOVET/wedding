@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import { type AutocompleteItem } from '../models/autocompleteItem'
+import { type AutocompleteItem } from '../models/AutocompleteItem'
 
 export class UserService {
   async search(userQuery: string): Promise<AutocompleteItem[]> {

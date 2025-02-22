@@ -20,14 +20,14 @@
     </p>
   </div>
   <div v-else>
-    Vous devez vous connecter pour acceder au planning personnalisé.
+    {{ $t('global.mustBeLoggedIn') }}
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
 
-  import { type User } from '../models/user'
+  import { type User } from '../models/User'
   import { AuthenticationService } from '../services/AuthenticationService';
 
   import Tuesday from './ScheduleTuesdayComponent.vue'
@@ -43,7 +43,6 @@
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);
     }
-
 
     eventBus.on('loggin', (user: User | null) => {
       loggedUser.value = user;

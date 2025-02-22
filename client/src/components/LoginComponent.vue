@@ -15,7 +15,7 @@
   import { useRouter } from 'vue-router'
 
   import { AuthenticationService } from '../services/AuthenticationService';
-  import { type User } from '../models/user'
+  import { type User } from '../models/User'
 
   const authenticationService = new AuthenticationService();
 

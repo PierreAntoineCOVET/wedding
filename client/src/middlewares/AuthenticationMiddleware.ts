@@ -1,7 +1,7 @@
 import { type RouteLocationNormalized, type RouteLocationNormalizedLoaded, type NavigationGuardNext, type Router, useRouter } from 'vue-router'
 
 import { AuthenticationService } from '../services/AuthenticationService'
-import { type User, Roles } from '../models/user'
+import { type User, Roles } from '../models/User'
 
 export class AuthenticationMiddleware {
   private authenticationService: AuthenticationService;

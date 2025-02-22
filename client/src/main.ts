@@ -19,6 +19,7 @@ app.provide('eventBus', eventBus);
 const i18n = createI18n({
   legacy: false,
   locale: navigator.language,
+  globalInjection: true,
   fallbackLocale: 'en',
   messages: {
     "fr": FrLocale,

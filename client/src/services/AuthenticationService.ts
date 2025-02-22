@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-import { type User } from '../models/user'
+import { type User } from '../models/User'
 
 export class AuthenticationService {
   static localeStorageKey: string = "authUser"

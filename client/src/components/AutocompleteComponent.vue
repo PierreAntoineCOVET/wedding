@@ -27,7 +27,7 @@
   import debounce from 'lodash.debounce'
 
   import { UserService } from '../services/UserService'
-  import { type AutocompleteItem } from '../models/autocompleteItem'
+  import { type AutocompleteItem } from '../models/AutocompleteItem'
   
   const searchInput = ref<string | null>(null);
   const isLoading = ref<boolean>(false);

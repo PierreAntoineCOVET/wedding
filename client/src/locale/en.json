@@ -13,5 +13,25 @@
     "login": "Log in",
     "userNamePlaceHolder": "User name"
   },
-  "notfound": "Page not found."
+  "notfound": "Page not found.",
+  "global": {
+    "mustBeLoggedIn": "You must be logged in to acces this page."
+  },
+  "form": {
+    "forUser": "Form for ",
+    "attendency": "Attendency: ",
+    "mealChoice": "Meal choice for tuesday evening",
+    "cheeseMeal": "Fondue Savoyarde",
+    "meatMeal": "Plancha de viandes",
+    "foodAllergy": "Food allergies :",
+    "music": "Music recommendation",
+    "other": "Other"
+  },
+  "dayOfWeek": {
+    "monday": "monday",
+    "tuesday": "tuesday",
+    "wednesday": "wednesday",
+    "thursday": "thursday",
+    "friday": "friday"
+  }
 }

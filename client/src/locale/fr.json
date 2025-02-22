@@ -13,5 +13,25 @@
     "login": "Connexion",
     "userNamePlaceHolder": "Nom d'utilisateur"
   },
-  "notfound": "Page non trouvée."
+  "notfound": "Page non trouvée.",
+  "global": {
+    "mustBeLoggedIn": "Vous devez vous connecter pour acces a cette page."
+  },
+  "form": {
+    "forUser": "Formullaire pour ",
+    "attendency": "Présence :",
+    "mealChoice": "Choix du repas pour le mardi soir",
+    "cheeseMeal": "Fondue Savoyarde",
+    "meatMeal": "Plancha de viandes",
+    "foodAllergy": "Alergies allimentaires :",
+    "music": "Recommendations musicales",
+    "other": "Autre"
+  },
+  "dayOfWeek": {
+    "monday": "lundi",
+    "tuesday": "mardi",
+    "wednesday": "mercredi",
+    "thursday": "jeudi",
+    "friday": "vendredi"
+  }
 }

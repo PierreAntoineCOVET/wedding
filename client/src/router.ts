@@ -9,7 +9,7 @@ import Admin from './components/AdminComponent.vue'
 import PageNotFound from './components/NotFound.vue'
 
 import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware'
-import { Roles } from './models/user'
+import { Roles } from './models/User'
 
 const routes = [
   { path: '/', component: HomeComponent },
