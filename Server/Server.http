@@ -1,5 +1,5 @@
-# @Server_HostAddress = http://localhost:5000/api
-@Server_HostAddress = http://amandineetromain.fr/api
+ @Server_HostAddress = http://localhost:5000/api
+#@Server_HostAddress = http://amandineetromain.fr/api
 
 GET {{Server_HostAddress}}/user/users
 Accept: application/json
