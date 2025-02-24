@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 
 import { type Form } from '../models/Form'
 
@@ -25,8 +25,10 @@ export class FormService {
 
     try {
       const url = `${import.meta.env.VITE_HOST_URI}form`;
-      const header = { 'Content-Type': 'application/json' };
-      const response = await axios.post<Form>(url, form, header);
+      const config: AxiosRequestConfig = {
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const response = await axios.post<Form>(url, form, config);
 
       if (response.status == 201) {
         return true;
@@ -43,8 +45,10 @@ export class FormService {
 
     try {
       const url = `${import.meta.env.VITE_HOST_URI}form`;
-      const header = { 'Content-Type': 'application/json' };
-      const response = await axios.put<Form>(url, form, header);
+      const config: AxiosRequestConfig = {
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const response = await axios.put<Form>(url, form, config);
 
       if (response.status == 200) {
         return true;
