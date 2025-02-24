@@ -44,9 +44,10 @@ namespace Server.Controllers
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(FormDto form)
         {
-            if (form.UserId == 0 || form.Id.HasValue)
+            if (form.UserId == 0 || (form.Id.HasValue && form.Id.Value != 0))
             {
                 return BadRequest("Invalid data");
             }
@@ -58,6 +59,34 @@ namespace Server.Controllers
                 await AerDbContext.SaveChangesAsync();
 
                 return Created();
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Db update exception");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPut()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Put(FormDto form)
+        {
+            if (form.UserId == 0 || !form.Id.HasValue)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            try
+            {
+                AerDbContext.Forms.Update(FormDto.ToModel(form));
+
+                await AerDbContext.SaveChangesAsync();
+
+                return Ok();
             }
             catch (DbUpdateException)
             {

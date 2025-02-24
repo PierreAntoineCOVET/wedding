@@ -11,7 +11,7 @@ using Server.Models;
 namespace Server.Migrations
 {
     [DbContext(typeof(AerDbContext))]
-    [Migration("20250204210630_Initial")]
+    [Migration("20250224195905_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -23,6 +23,43 @@ namespace Server.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("Server.Models.Form", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ConfirmedDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FoodAllergy")
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("MealChoice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MusicRecommendation")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Other")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Forms");
+                });
 
             modelBuilder.Entity("Server.Models.User", b =>
                 {
@@ -37,10 +74,8 @@ namespace Server.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Invitation")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)");
+                    b.Property<int>("Invitation")
+                        .HasColumnType("INT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -65,6 +100,22 @@ namespace Server.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Server.Models.Form", b =>
+                {
+                    b.HasOne("Server.Models.User", "User")
+                        .WithOne("Form")
+                        .HasForeignKey("Server.Models.Form", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Server.Models.User", b =>
+                {
+                    b.Navigation("Form");
                 });
 #pragma warning restore 612, 618
         }

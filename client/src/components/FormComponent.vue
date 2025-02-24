@@ -1,162 +1,193 @@
 <template>
-  <div v-if="loggedUser">
-    <div v-if="isLoading" class="spinner-border" role="status">
-      <span class="sr-only"></span>
-    </div>
-    <div v-else>
-      <div v-for="form in forms">
-        <fieldset>
-          <legend>{{ $t('form.forUser') }} {{ form[0].firstName }} {{ form[0].lastName }}</legend>
-          <div class="formItem">
-            {{ $t('form.attendency') }}
-            <div class="attendency-container">
-              <div class="attendency" v-for="attendency in computeAttendency(form[0].invitation, form[1].confirmedDays)">
-                <label>
-                  {{ $t(attendency.dayOfWeek) }}
-                  <input type="checkbox" :checked="attendency.confirmed" @change="updateAttendency(form[0].id, attendency.indexOfWeek)" />
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="formItem" v-if="form[0].invitation[3] == 1">
-            {{ $t('form.mealChoice') }}
-            <div>
-              <label class="meal">
-                {{ $t('form.cheeseMeal') }}
-                <input type="radio" name="form[0].id" />
-              </label>
-              <label class="meal">
-                {{ $t('form.meatMeal') }}
-                <input type="radio" name="form[0].id" />
+  <fieldset class="card">
+    <legend>{{ $t('form.forUser') }} {{ user.firstName }} {{ user.lastName }}</legend>
+    <div class="form-container">
+      <div class="wide-left">
+        <div class="form-item">
+          <div class="form-label">{{ $t('form.attendency') }}</div>
+          <div class="attendency-container">
+            <div class="attendency" v-for="attendency in attendencies">
+              <label class="form-check-label">
+                {{ $t(attendency.dayOfWeek) }}
+                <input type="checkbox" class="form-check-input" :checked="attendency.confirmed"
+                       @change="updateAttendency(user.id, attendency.indexOfWeek)" />
               </label>
             </div>
           </div>
-          <div class="formItem">{{ $t('form.foodAllergy') }} <input type="text" /></div>
-          <div class="formItem">{{ $t('form.music') }} <input type="text" /></div>
-          <div class="formItem">{{ $t('form.other') }} <div><textarea></textarea></div></div>
-        </fieldset>
+        </div>
+        <div class="form-item" v-if="user.invitation[3] == 1">
+          <div class="form-label">{{ $t('form.mealChoice') }}</div>
+          <div>
+            <label class="meal form-check-label">
+              {{ $t('form.cheeseMeal') }}
+              <input type="radio" class="form-check-input" name="user.id"
+                     :value="MealChoices.Cheese" v-model="form.mealChoice" />
+            </label>
+            <label class="meal form-check-label">
+              {{ $t('form.meatMeal') }}
+              <input type="radio" class="form-check-input" name="user.id"
+                     :value="MealChoices.Meat" v-model="form.mealChoice" />
+            </label>
+          </div>
+        </div>
+        <div class="form-item">
+          <div class="form-label">{{ $t('form.foodAllergy') }}</div>
+          <input type="text" class="form-control" v-model="form.foodAllergy" />
+        </div>
       </div>
-      <Autocomplete />
+      <div class="wide-right">
+        <div class="form-item">
+          <div class="form-label">{{ $t('form.music') }}</div>
+          <input type="text" class="form-control" v-model="form.musicRecommendation" />
+        </div>
+        <div class="form-item">
+          <div class="form-label">{{ $t('form.other') }}</div>
+          <div><textarea class="form-control" v-model="form.other"></textarea></div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div v-else>
-    {{ $t('global.mustBeLoggedIn') }}
-  </div>
+
+    <!--<div class="alert alert-success" role="alert">
+      {{ $t('form.saveSuccess') }}
+    </div>
+    <div class="alert alert-danger" role="alert">
+      {{ $t('form.saveError') }}
+    </div>-->
+
+    <button class="btn btn-primary" @click="save()">
+      <div v-if="isSaving" class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+      <div v-else>
+        {{ $t('form.save') }}
+      </div>
+    </button>
+  </fieldset>
 </template>
 
 <script setup lang="ts">
+  const user = defineModel<User>('user');
+  const form = defineModel<Form>('form');
+
   type Attendency = {
     dayOfWeek: string,
     indexOfWeek: number,
     confirmed: boolean
   };
 
-  import { ref, onMounted, inject } from 'vue';
+  import { defineModel, computed, ref } from 'vue'
+  import { toast } from "vue3-toastify";
+  import "vue3-toastify/dist/index.css";
+  import { useI18n } from "vue-i18n";
 
   import { type User } from '../models/User'
   import { type Form, MealChoices } from '../models/Form'
-  import { AuthenticationService } from '../services/AuthenticationService'
   import { FormService } from "../services/FormService"
 
-  import Autocomplete from "./AutocompleteComponent.vue"
-
-  const loggedUser = ref<User | null>(null);
-  const eventBus = inject('eventBus') as any;
-  const isLoading = ref<boolean>(true);
-  const forms = ref<[User, Form][]>([]);
   const formService = new FormService();
+  const isSaving = ref<boolean>(false);
+  const { t } = useI18n({ useScope: "global" });
 
-  onMounted(() => {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
-    if (loggedUserString) {
-      loggedUser.value = JSON.parse(loggedUserString);
+  const attendencies = computed<Attendency[]>(
+    () => {
+      const attendency = [];
 
-      getUserForm(loggedUser.value);
-    }
-
-    eventBus.on('loggin', (user: User | null) => {
-      loggedUser.value = user;
-
-      getUserForm(loggedUser.value);
-    });
-  })
-
-  async function getUserForm(user: User) {
-    const savedForm = await formService.getForUser(user.id)
-
-    if (savedForm == null) {
-      const newForm: Form = {
-        userId: user.id,
-        confirmedDays: "00000",
-        mealChoice: MealChoices.None,
-        foodAllergy: "",
-        musicRecommendation: "",
-        other: ""
+      if (user.value.invitation[0] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.monday",
+          indexOfWeek: 0,
+          confirmed: form.value.confirmedDays[0] === "1"
+        });
+      }
+      if (user.value.invitation[1] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.tuesday",
+          indexOfWeek: 1,
+          confirmed: form.value.confirmedDays[1] === "1"
+        });
+      }
+      if (user.value.invitation[2] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.wednesday",
+          indexOfWeek: 2,
+          confirmed: form.value.confirmedDays[2] === "1"
+        });
+      }
+      if (user.value.invitation[3] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.thursday",
+          indexOfWeek: 3,
+          confirmed: form.value.confirmedDays[3] === "1"
+        });
+      }
+      if (user.value.invitation[4] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.friday",
+          indexOfWeek: 4,
+          confirmed: form.value.confirmedDays[4] === "1"
+        });
       }
 
-      forms.value.push([user, newForm]);
-    }
-
-    isLoading.value = false;
-  }
-
-  function computeAttendency(invitedDays: string, confirmedDays: string): Attendency[] {
-    const attendency = [];
-
-    if (invitedDays[0] === "1") {
-      attendency.push({
-        dayOfWeek: "dayOfWeek.monday",
-        indexOfWeek: 0,
-        confirmed: confirmedDays[0] === "1"
-      });
-    }
-    if (invitedDays[1] === "1") {
-      attendency.push({
-        dayOfWeek: "dayOfWeek.tuesday",
-        indexOfWeek: 1,
-        confirmed: confirmedDays[1] === "1"
-      });
-    }
-    if (invitedDays[2] === "1") {
-      attendency.push({
-        dayOfWeek: "dayOfWeek.wednesday",
-        indexOfWeek: 2,
-        confirmed: confirmedDays[2] === "1"
-      });
-    }
-    if (invitedDays[3] === "1") {
-      attendency.push({
-        dayOfWeek: "dayOfWeek.thursday",
-        indexOfWeek: 3,
-        confirmed: confirmedDays[3] === "1"
-      });
-    }
-    if (invitedDays[4] === "1") {
-      attendency.push({
-        dayOfWeek: "dayOfWeek.friday",
-        indexOfWeek: 4,
-        confirmed: confirmedDays[4] === "1"
-      });
-    }
-
-    return attendency;
-  }
+      return attendency;
+    });
 
   function updateAttendency(userId: number, indexOfWeek: number) {
-    const form = forms.value.find(e => e[0].id === userId);
-    const days = form[1].confirmedDays;
-    const currentValue = days[indexOfWeek];
-    form[1].confirmedDays = days.substring(0, indexOfWeek) + (currentValue == '0' ? '1' : '0') + days.substring(indexOfWeek + 1);
+    const currentValue = form.value.confirmedDays[indexOfWeek];
+    form.value.confirmedDays = form.value.confirmedDays.substring(0, indexOfWeek)
+      + (currentValue == '0' ? '1' : '0')
+      + form.value.confirmedDays.substring(indexOfWeek + 1);
+  }
+
+  async function save() {
+    isSaving.value = true;
+
+    const success = form.value.id !== 0
+      ? await formService.update(form.value)
+      : await formService.create(form.value);
+
+    if (success) {
+      toast(t('form.saveSuccess'), {
+        "theme": "colored",
+        "type": "success",
+        "position": "top-center",
+        "dangerouslyHTMLString": true
+      });
+    }
+    else {
+      toast(t('form.saveError'), {
+        "autoClose": false,
+        "theme": "colored",
+        "type": "error",
+        "position": "top-center",
+        "hideProgressBar": true,
+        "dangerouslyHTMLString": true
+      });
+    }
+
+    isSaving.value = false;
   }
 </script>
 
 <style scoped>
-  .formItem {
+  .form-item {
     margin: 10px 0 10px 0;
   }
 
   .attendency, .meal {
     margin-right: 1rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .card {
+    padding: .5rem;
+  }
+
+  .btn,
+  .btn:hover {
+    color: #fff;
   }
 
   @media (max-width: 1024px) {
@@ -171,6 +202,12 @@
     .attendency-container {
       display: flex;
       flex-direction: row;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
     }
 
     textarea {

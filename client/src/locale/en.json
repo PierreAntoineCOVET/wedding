@@ -19,19 +19,22 @@
   },
   "form": {
     "forUser": "Form for ",
-    "attendency": "Attendency: ",
+    "attendency": "Attendency",
     "mealChoice": "Meal choice for tuesday evening",
     "cheeseMeal": "Fondue Savoyarde",
     "meatMeal": "Plancha de viandes",
-    "foodAllergy": "Food allergies :",
+    "foodAllergy": "Food allergies",
     "music": "Music recommendation",
-    "other": "Other"
+    "other": "Other",
+    "save": "Save",
+    "saveSuccess": "Saved",
+    "saveError": "Error while saving, please contact ..."
   },
   "dayOfWeek": {
-    "monday": "monday",
-    "tuesday": "tuesday",
-    "wednesday": "wednesday",
-    "thursday": "thursday",
-    "friday": "friday"
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday"
   }
 }

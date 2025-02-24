@@ -3,7 +3,7 @@ import { createWebHistory, createRouter, type NavigationGuardNext, type RouteLoc
 import HomeComponent from './components/HomeComponent.vue'
 import Schedule from './components/ScheduleComponent.vue'
 import Info from './components/InfoComponent.vue'
-import Form from './components/FormComponent.vue'
+import Forms from './components/FormsComponent.vue'
 import Contact from './components/ContactComponent.vue'
 import Admin from './components/AdminComponent.vue'
 import PageNotFound from './components/NotFound.vue'
@@ -15,7 +15,7 @@ const routes = [
   { path: '/', component: HomeComponent },
   { path: '/schedule', component: Schedule },
   { path: '/info', component: Info },
-  { path: '/form', component: Form },
+  { path: '/forms', component: Forms },
   { path: '/Contact', component: Contact },
   {
     path: '/admin',

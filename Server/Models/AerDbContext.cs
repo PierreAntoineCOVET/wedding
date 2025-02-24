@@ -50,11 +50,8 @@ namespace Server.Models
             {
                 entity.HasKey(form => form.Id);
 
-                //entity.Property(form => form.ConfirmedDays)
-                //    .HasColumnType("INT");
-
-                //entity.Property(form => form.MealChoice)
-                //    .HasColumnType("INT");
+                //entity.HasIndex(form => form.UserId)
+                //    .IsUnique();
 
                 entity.Property(form => form.FoodAllergy)
                     .HasMaxLength(300);

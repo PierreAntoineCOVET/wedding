@@ -20,4 +20,40 @@ export class FormService {
 
     return null;
   }
+
+  async create(form: Form): Promise<boolean> {
+
+    try {
+      const url = `${import.meta.env.VITE_HOST_URI}form`;
+      const header = { 'Content-Type': 'application/json' };
+      const response = await axios.post<Form>(url, form, header);
+
+      if (response.status == 201) {
+        return true;
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+
+    return false;
+  }
+
+  async update(form: Form): Promise<boolean> {
+
+    try {
+      const url = `${import.meta.env.VITE_HOST_URI}form`;
+      const header = { 'Content-Type': 'application/json' };
+      const response = await axios.put<Form>(url, form, header);
+
+      if (response.status == 200) {
+        return true;
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+
+    return false;
+  }
 }

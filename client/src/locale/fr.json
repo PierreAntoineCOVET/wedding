@@ -19,19 +19,22 @@
   },
   "form": {
     "forUser": "Formullaire pour ",
-    "attendency": "Présence :",
+    "attendency": "Présence",
     "mealChoice": "Choix du repas pour le mardi soir",
     "cheeseMeal": "Fondue Savoyarde",
     "meatMeal": "Plancha de viandes",
-    "foodAllergy": "Alergies allimentaires :",
+    "foodAllergy": "Alergies allimentaires",
     "music": "Recommendations musicales",
-    "other": "Autre"
+    "other": "Autre",
+    "save": "Enregistrer",
+    "saveSuccess": "Enregistré",
+    "saveError": "Erreur lors de l'enregistrements, merci de prévenir ..."
   },
   "dayOfWeek": {
-    "monday": "lundi",
-    "tuesday": "mardi",
-    "wednesday": "mercredi",
-    "thursday": "jeudi",
-    "friday": "vendredi"
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi"
   }
 }

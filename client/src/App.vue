@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
   import NavigationComponent from './components/NavigationComponent.vue'
-  import 'bootstrap/dist/js/bootstrap.min.js'
+  //import 'bootstrap/dist/js/bootstrap.min.js'
   //import "@popperjs/core/dist/umd/popper.min.js"
 </script>
 

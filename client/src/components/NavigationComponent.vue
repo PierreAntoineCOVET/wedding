@@ -34,7 +34,7 @@
           <li class="nav-item">
             <RouterLink class="nav-link"
                         :class="{'active': activePage == ActivePage.Form}"
-                        to="/form"
+                        to="/forms"
                         @Click="navigate(ActivePage.Form)">
               {{ $t('nav.form') }}
             </RouterLink>
@@ -121,7 +121,7 @@
         return ActivePage.Schedule;
       case '/info':
         return ActivePage.Info;
-      case '/form':
+      case '/forms':
         return ActivePage.Form;
       case '/contact':
         return ActivePage.Contact;
