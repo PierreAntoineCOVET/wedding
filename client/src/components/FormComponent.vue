@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item" v-if="user.invitation[3] == 1">
+        <div class="form-item" v-if="user.invitation[3] == '1'">
           <div class="form-label">{{ $t('form.mealChoice') }}</div>
           <div>
             <label class="meal form-check-label">
@@ -66,8 +66,8 @@
 </template>
 
 <script setup lang="ts">
-  const user = defineModel<User>('user');
-  const form = defineModel<Form>('form');
+  const user = defineModel<User>('user', { required: true });
+  const form = defineModel<Form>('form', { required: true });
 
   type Attendency = {
     dayOfWeek: string,

@@ -55,7 +55,7 @@
     });
   })
 
-  async function getUserForm(user: User): [User, Form] {
+  async function getUserForm(user: User): Promise<[User, Form]> {
     const savedForm = await formService.getForUser(user.id);
 
     const userForm = savedForm ?? {

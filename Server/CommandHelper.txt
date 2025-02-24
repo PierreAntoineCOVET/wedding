@@ -15,3 +15,6 @@ docker run --rm -v my-db:/vackup-volume -v C:\Users\pierr\dockerVolumesBackup:/v
 
 # Restore db volume
 docker run --rm -v my-db:/vackup-volume -v /home/pierreantoine/dockerVolumesBackup:/vackup busybox tar -xvzf /vackup/mydb.tar -C /
+
+# Local hardcore client build
+npm run build
