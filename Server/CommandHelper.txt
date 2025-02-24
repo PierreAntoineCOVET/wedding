@@ -13,6 +13,9 @@ docker network create mynetwork
 # Backup db volume
 docker run --rm -v my-db:/vackup-volume -v C:\Users\pierr\dockerVolumesBackup:/vackup busybox tar -zcvf /vackup/mydb.tar /vackup-volume
 
+# Remove volume
+docker volume rm my-db
+
 # Restore db volume
 docker run --rm -v my-db:/vackup-volume -v /home/pierreantoine/dockerVolumesBackup:/vackup busybox tar -xvzf /vackup/mydb.tar -C /
 
