@@ -69,7 +69,7 @@
       searchResults.value = [];
     }
 
-    emit('onSelection', result.value)
+    emit('onSelection', parseInt(result.value))
   }
 
   watch(searchInput, debounce(async (newSeach) => { searchUser(newSeach); }, 500));

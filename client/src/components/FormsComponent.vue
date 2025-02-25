@@ -79,6 +79,12 @@
 
   async function addForm(userId: number) {
     const user = await userService.getUser(userId);
+
+    if (!user) {
+      alert('Error');
+      return;
+    }
+
     const formData = await getUserForm(user);
     forms.value.push(formData);
   }
