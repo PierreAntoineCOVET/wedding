@@ -139,13 +139,13 @@
   import { ref, onMounted, inject } from 'vue';
 
   import { type User } from '../models/User'
-  import { AuthenticationService } from '../services/AuthenticationService';
+  import { UserService } from '../services/UserService'
 
   const loggedUser = ref<User | null>(null);
   const eventBus = inject('eventBus') as any;
 
   onMounted(() => {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);
     }

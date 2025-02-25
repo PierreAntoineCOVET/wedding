@@ -1,4 +1,4 @@
- @Server_HostAddress = http://localhost:5000/api
+@Server_HostAddress = http://localhost:5000/api
 #@Server_HostAddress = http://amandineetromain.fr/api
 
 GET {{Server_HostAddress}}/user/users
@@ -6,7 +6,12 @@ Accept: application/json
 
 ###
 
-GET {{Server_HostAddress}}/user/pa.covet
+GET {{Server_HostAddress}}/user?userName=pa.covet
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/user/1
 Accept: application/json
 
 ###
@@ -54,3 +59,55 @@ Accept: application/json
 
 GET {{Server_HostAddress}}/user/search?query=cov
 Accept: application/json
+
+###
+
+POST {{Server_HostAddress}}/user
+Content-Type: application/json
+
+{
+  "firstName": "Lundi",
+  "lastName": "Jeudi",
+  "userName": "lj.fake",
+  "role": 0,
+  "Invitation": "11110"
+}
+
+###
+
+POST {{Server_HostAddress}}/user
+Content-Type: application/json
+
+{
+  "firstName": "Mardi",
+  "lastName": "Only",
+  "userName": "ma.fake",
+  "role": 0,
+  "Invitation": "01000"
+}
+
+###
+
+POST {{Server_HostAddress}}/user
+Content-Type: application/json
+
+{
+  "firstName": "Mercredi",
+  "lastName": "Only",
+  "userName": "me.fake",
+  "role": 0,
+  "Invitation": "00100"
+}
+
+###
+
+POST {{Server_HostAddress}}/user
+Content-Type: application/json
+
+{
+  "firstName": "Mardi",
+  "lastName": "Jeudi",
+  "userName": "mj.fake",
+  "role": 0,
+  "Invitation": "01110"
+}

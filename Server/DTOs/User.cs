@@ -27,7 +27,7 @@ namespace Server.DTOs
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Role = userModel.Role,
-                Invitation = Convert.ToString((int)userModel.Invitation, 2)
+                Invitation = Convert.ToString((int)userModel.Invitation, 2).PadLeft(5, '0')
             };
         }
 

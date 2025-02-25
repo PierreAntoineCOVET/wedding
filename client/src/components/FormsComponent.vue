@@ -7,7 +7,9 @@
       <div v-for="form in forms">
         <FormComponent v-model:user="form[0]" v-model:form="form[1]" class="form" />
       </div>
-      <Autocomplete />
+      {{ $t('forms.fillForSomeoneElse') }}
+      <Autocomplete :placeholder="$t('forms.searchBy')" @on-selection="addForm($event)" clear-on-select />
+      <div class="filler"></div>
     </div>
   </div>
   <div v-else>
@@ -20,7 +22,7 @@
 
   import { type User } from '../models/User'
   import { type Form, MealChoices } from '../models/Form'
-  import { AuthenticationService } from '../services/AuthenticationService'
+  import { UserService } from '../services/UserService'
   import { FormService } from "../services/FormService"
 
   import Autocomplete from "./AutocompleteComponent.vue"
@@ -30,10 +32,12 @@
   const eventBus = inject('eventBus') as any;
   const isLoading = ref<boolean>(true);
   const forms = ref<[User, Form][]>([]);
+
   const formService = new FormService();
+  const userService = new UserService();
 
   onMounted(async () => {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
     if (loggedUserString) {
       const user = JSON.parse(loggedUserString);
       loggedUser.value = user;
@@ -72,10 +76,20 @@
 
     return [user, userForm];
   }
+
+  async function addForm(userId: number) {
+    const user = await userService.getUser(userId);
+    const formData = await getUserForm(user);
+    forms.value.push(formData);
+  }
 </script>
 
 <style scoped>
   .form {
       margin-bottom: 1rem;
+  }
+
+  .filler {
+      height: 400px;
   }
 </style>

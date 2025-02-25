@@ -1,20 +1,20 @@
-import { type RouteLocationNormalized, type RouteLocationNormalizedLoaded, type NavigationGuardNext, type Router, useRouter } from 'vue-router'
+import { type RouteLocationNormalized, type RouteLocationNormalizedLoaded, type NavigationGuardNext, type Router } from 'vue-router'
 
-import { AuthenticationService } from '../services/AuthenticationService'
+import { UserService } from '../services/UserService'
 import { type User, Roles } from '../models/User'
 
 export class AuthenticationMiddleware {
-  private authenticationService: AuthenticationService;
+  private userService: UserService;
   private router: Router;
 
   constructor(router: Router) {
-    this.authenticationService = new AuthenticationService();
+    this.userService = new UserService();
     this.router = router;
   }
 
   async authenticate(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) {
     if (to.query.user) {
-      const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+      const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
 
       //let user = null;
       const loggedUserName = loggedUserString
@@ -23,9 +23,9 @@ export class AuthenticationMiddleware {
 
       if (!loggedUserName || loggedUserName !== to.query.user.toString()) {
 
-        const user = await this.authenticationService.authenticate(to.query.user.toString());
+        const user = await this.userService.authenticate(to.query.user.toString());
 
-        localStorage.setItem(AuthenticationService.localeStorageKey, JSON.stringify(user));
+        localStorage.setItem(UserService.localeStorageKey, JSON.stringify(user));
       }
 
       const routeQuery = { ...to.query };
@@ -43,7 +43,7 @@ export class AuthenticationMiddleware {
   }
 
   guardAccess(accesToCheck: Roles, next: NavigationGuardNext) {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
 
     if (!loggedUserString) {
       next('/');

@@ -17,6 +17,10 @@
   "global": {
     "mustBeLoggedIn": "Vous devez vous connecter pour acces a cette page."
   },
+  "forms": {
+    "fillForSomeoneElse": "Vous voulez remplir le formulaire pour quelqu'un d'autre ?",
+    "searchBy": "Nom de famille"
+  },
   "form": {
     "forUser": "Formullaire pour ",
     "attendency": "Présence",

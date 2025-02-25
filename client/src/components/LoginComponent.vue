@@ -14,10 +14,10 @@
   import { ref, onMounted, inject } from 'vue';
   import { useRouter } from 'vue-router'
 
-  import { AuthenticationService } from '../services/AuthenticationService';
+  import { UserService } from '../services/UserService'
   import { type User } from '../models/User'
 
-  const authenticationService = new AuthenticationService();
+  const userService = new UserService();
 
   const loginText = ref<string | null>(null);
   const loggedUser = ref<User | null>(null);
@@ -28,7 +28,7 @@
   onMounted(async () => {
     await router.isReady();
 
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
 
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);
@@ -40,12 +40,12 @@
       return;
     }
 
-    const user = await authenticationService.authenticate(loginText.value);
+    const user = await userService.authenticate(loginText.value);
 
     if (user && user.id) {
       console.log(user);
       loggedUser.value = user;
-      localStorage.setItem(AuthenticationService.localeStorageKey, JSON.stringify(user));
+      localStorage.setItem(UserService.localeStorageKey, JSON.stringify(user));
 
       eventBus.emit('loggin', user);
 
@@ -58,7 +58,7 @@
   function unconnect() {
     loggedUser.value = null;
     loginText.value = null;
-    localStorage.removeItem(AuthenticationService.localeStorageKey);
+    localStorage.removeItem(UserService.localeStorageKey);
 
     eventBus.emit('loggin', null);
   }

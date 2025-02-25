@@ -79,7 +79,7 @@
 
   import Login from './LoginComponent.vue'
   import { type User, Roles } from '../models/User'
-  import { AuthenticationService } from '../services/AuthenticationService';
+  import { UserService } from '../services/UserService'
 
   const router = useRouter();
   const route = useRoute();
@@ -91,7 +91,7 @@
   onMounted(async () => {
     await router.isReady();
 
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
 
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);

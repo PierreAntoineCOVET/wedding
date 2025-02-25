@@ -27,12 +27,28 @@ namespace Server.Controllers
             return users.Select(user => UserDto.FromModel(user));
         }
 
-        [HttpGet("{userName}")]
+        //[HttpGet("{userName}")]
+        [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<UserDto?> Get(string userName)
         {
             var user = await AerDbContext.Users.FirstOrDefaultAsync(u => u.UserName == userName);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return UserDto.FromModel(user);
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<UserDto?> Get(int id)
+        {
+            var user = await AerDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
             {
@@ -48,7 +64,7 @@ namespace Server.Controllers
         {
             var users = await AerDbContext.Users
                 .Where(user => EF.Functions.Like(user.LastName, $"%{query}%"))
-                .Select(user => new AutocompleteItem { Label = user.LastName, Value = user.Id.ToString() })
+                .Select(user => new AutocompleteItem { Label = user.LastName + " " + user.FirstName, Value = user.Id.ToString() })
                 .ToListAsync();
 
             return users;

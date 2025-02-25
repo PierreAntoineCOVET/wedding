@@ -28,7 +28,7 @@
   import { ref, onMounted, inject } from 'vue';
 
   import { type User } from '../models/User'
-  import { AuthenticationService } from '../services/AuthenticationService';
+  import { UserService } from '../services/UserService'
 
   import Tuesday from './ScheduleTuesdayComponent.vue'
   import Wednesday from './ScheduleWednesdayComponent.vue'
@@ -39,7 +39,7 @@
   const eventBus = inject('eventBus') as any;
 
   onMounted(() => {
-    const loggedUserString = localStorage.getItem(AuthenticationService.localeStorageKey);
+    const loggedUserString = localStorage.getItem(UserService.localeStorageKey);
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);
     }

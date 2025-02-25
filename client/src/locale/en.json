@@ -17,6 +17,10 @@
   "global": {
     "mustBeLoggedIn": "You must be logged in to acces this page."
   },
+  "forms": {
+    "fillForSomeoneElse": "You want to fill the form for someone else ?",
+    "searchBy": "Last name"
+  },
   "form": {
     "forUser": "Form for ",
     "attendency": "Attendency",

@@ -1,7 +1,7 @@
 <template>
   <div class="autocomplete-container">
     <div class="input-group" :class="{'expended': searchInput}">
-      <input type="text" class="form-control" placeholder="Recipient's username" v-model.trim="searchInput" />
+      <input type="text" class="form-control" :placeholder="placeholder" v-model.trim="searchInput" />
       <button v-if="searchInput && !isLoading" class="btn btn-outline-secondary" type="button" @click="clearSearch()">X</button>
       <div  v-if="isLoading" class="input-group-text">
         <div class="spinner-border text-primary spinner-border-sm" role="status">
@@ -23,11 +23,16 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { ref, watch, defineProps, defineEmits } from 'vue';
   import debounce from 'lodash.debounce'
 
   import { UserService } from '../services/UserService'
   import { type AutocompleteItem } from '../models/AutocompleteItem'
+
+  const props = defineProps<{
+    placeholder: string,
+    clearOnSelect: boolean,
+  }>()
   
   const searchInput = ref<string | null>(null);
   const isLoading = ref<boolean>(false);
@@ -35,6 +40,10 @@
   const selectedItem = ref<AutocompleteItem | null>(null);
 
   const userService = new UserService();
+
+  const emit = defineEmits<{
+    onSelection: [id: number]
+  }>();
 
   function clearSearch() {
     searchInput.value = null;
@@ -49,11 +58,18 @@
       return;
     }
 
-    selectedItem.value = result;
+    if (props.clearOnSelect) {
+      clearSearch();
+    }
+    else {
+      selectedItem.value = result;
 
-    searchInput.value = result.label;
+      searchInput.value = result.label;
 
-    searchResults.value = [];
+      searchResults.value = [];
+    }
+
+    emit('onSelection', result.value)
   }
 
   watch(searchInput, debounce(async (newSeach) => { searchUser(newSeach); }, 500));

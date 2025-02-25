@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <div class="form-item" v-if="user.invitation[3] == '1'">
+        <div class="form-item" v-if="user.invitation[1] == '1'">
           <div class="form-label">{{ $t('form.mealChoice') }}</div>
           <div>
             <label class="meal form-check-label">
@@ -46,13 +46,6 @@
         </div>
       </div>
     </div>
-
-    <!--<div class="alert alert-success" role="alert">
-      {{ $t('form.saveSuccess') }}
-    </div>
-    <div class="alert alert-danger" role="alert">
-      {{ $t('form.saveError') }}
-    </div>-->
 
     <button class="btn btn-primary" @click="save()">
       <div v-if="isSaving" class="spinner-border" role="status">
@@ -202,6 +195,10 @@
     .attendency-container {
       display: flex;
       flex-direction: row;
+    }
+
+    .wide-left, .wide-right {
+        flex-basis: 40%;
     }
 
     .form-container {
