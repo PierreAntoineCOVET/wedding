@@ -43,7 +43,6 @@
     const user = await userService.authenticate(loginText.value);
 
     if (user && user.id) {
-      console.log(user);
       loggedUser.value = user;
       localStorage.setItem(UserService.localeStorageKey, JSON.stringify(user));
 

@@ -11,7 +11,7 @@
 <script setup lang="ts">
   import NavigationComponent from './components/NavigationComponent.vue'
   import 'bootstrap/dist/js/bootstrap.min.js'
-  //import "@popperjs/core/dist/umd/popper.min.js"
+  import 'bootstrap-maxlength/dist/bootstrap-maxlength.min.js'
 </script>
 
 <style lang="scss">

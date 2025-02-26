@@ -54,11 +54,13 @@ namespace Server.Controllers
 
             try
             {
-                await AerDbContext.Forms.AddAsync(FormDto.ToModel(form));
+                var dbForm = FormDto.ToModel(form);
+
+                await AerDbContext.Forms.AddAsync(dbForm);
 
                 await AerDbContext.SaveChangesAsync();
 
-                return Created();
+                return Created(dbForm.Id.ToString(), dbForm.Id);
             }
             catch (DbUpdateException)
             {

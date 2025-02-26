@@ -1,5 +1,5 @@
 
-import axios, { type AxiosRequestConfig } from 'axios';
+import axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios';
 
 import { type Form } from '../models/Form'
 
@@ -21,24 +21,24 @@ export class FormService {
     return null;
   }
 
-  async create(form: Form): Promise<boolean> {
+  async create(form: Form): Promise<number> {
 
     try {
       const url = `${import.meta.env.VITE_HOST_URI}form`;
       const config: AxiosRequestConfig = {
         headers: { 'Content-Type': 'application/json' }
       };
-      const response = await axios.post<Form>(url, form, config);
+      const response = await axios.post<Form> (url, form, config);
 
       if (response.status == 201) {
-        return true;
+        return response.data as unknown as number;
       }
     }
     catch (error) {
       console.error(error);
     }
 
-    return false;
+    return 0;
   }
 
   async update(form: Form): Promise<boolean> {

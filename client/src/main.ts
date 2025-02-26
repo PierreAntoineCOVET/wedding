@@ -3,6 +3,8 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import mitt from 'mitt'
 
+//import $ from 'jquery'
+
 import { createI18n } from 'vue-i18n'
 import FrLocale from './locale/fr.json'
 import EnLocale from './locale/en.json'

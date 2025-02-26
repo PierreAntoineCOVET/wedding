@@ -32,17 +32,17 @@
         </div>
         <div class="form-item">
           <div class="form-label">{{ $t('form.foodAllergy') }}</div>
-          <input type="text" class="form-control" v-model="form.foodAllergy" />
+          <input type="text" class="form-control" maxlength="300" v-model="form.foodAllergy" />
         </div>
       </div>
       <div class="wide-right">
         <div class="form-item">
           <div class="form-label">{{ $t('form.music') }}</div>
-          <input type="text" class="form-control" v-model="form.musicRecommendation" />
+          <input type="text" class="form-control" maxlength="300" v-model="form.musicRecommendation" />
         </div>
         <div class="form-item">
           <div class="form-label">{{ $t('form.other') }}</div>
-          <div><textarea class="form-control" v-model="form.other"></textarea></div>
+          <div><textarea class="form-control" maxlength="500" v-model="form.other"></textarea></div>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
     confirmed: boolean
   };
 
-  import { defineModel, computed, ref } from 'vue'
+  import { defineModel, computed, ref, onMounted } from 'vue'
   import { toast } from "vue3-toastify";
   import "vue3-toastify/dist/index.css";
   import { useI18n } from "vue-i18n";
@@ -76,6 +76,14 @@
   import { type User } from '../models/User'
   import { type Form, MealChoices } from '../models/Form'
   import { FormService } from "../services/FormService"
+
+  onMounted(() => {
+    $('[maxlength]').maxlength({
+      alwaysShow: true,
+      warningClass: "label label-success",
+      limitReachedClass: "label label-danger",
+    });
+  });
 
   const formService = new FormService();
   const isSaving = ref<boolean>(false);
@@ -139,6 +147,10 @@
       : await formService.create(form.value);
 
     if (success) {
+      if (form.value.id === 0) {
+        form.value.id = success;
+      }
+
       toast(t('form.saveSuccess'), {
         "theme": "colored",
         "type": "success",
@@ -181,6 +193,10 @@
   .btn,
   .btn:hover {
     color: #fff;
+  }
+
+  .form-container {
+      margin-bottom: 1rem;
   }
 
   @media (max-width: 1024px) {
