@@ -12,6 +12,8 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@types/bootstrap-maxlength": "^1.7.35",
+    "@types/jquery": "^3.5.32",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "bootstrap-maxlength": "^2.0.0",

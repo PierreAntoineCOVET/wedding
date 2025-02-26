@@ -148,7 +148,7 @@
 
     if (success) {
       if (form.value.id === 0) {
-        form.value.id = success;
+        form.value.id = success as number;
       }
 
       toast(t('form.saveSuccess'), {
