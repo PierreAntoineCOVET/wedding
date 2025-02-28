@@ -37,7 +37,7 @@
 
     <p>
       Chemises, pantalon, chaussettes, chaussures de couleurs à motifs
-      (du type tout plein de fleurs) sont plus que bienvenue !
+      (du type tout plein de fleurs) sont plus que bienvenus !
     </p>
 
     <p>
@@ -55,7 +55,7 @@
   <div>
     <h5>Accessoires :</h5>
     <p>
-      Casquette, bretelles, nœud papillon, cravates à fleur, ombrelles, sneakers … ! Tout ça
+      Casquette, bretelles, nœud papillon, cravate à fleur, ombrelles, sneakers … ! Tout ça
       on valide et encourage !
     </p>
   </div>
@@ -116,7 +116,7 @@
   <div>
     <h5>Les logements :</h5>
     <p>
-      A l’entrée de chaque gîte se trouvera une carte avec l’emplacement des chambres et vos noms inscrit
+      A l’entrée de chaque gîte se trouvera une carte avec l’emplacement des chambres et vos noms inscrits
       dessus. Sur chaque porte sera indiqué votre nom.
     </p>
     <p>

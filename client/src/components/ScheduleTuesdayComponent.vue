@@ -4,7 +4,7 @@
   <div class="schedule-grid">
     <div class="time">14h15</div>
     <div class="info">
-      <p>Rendez-vous à la Marie de Goncelin (38), ou sera célébré notre mariage civile à 14h30.</p>
+      <p>Rendez-vous à la Marie de Goncelin (38), ou sera célébré notre mariage civil à 14h30.</p>
 
       <p>(Soyez à l’heure, ça serait dommage de rater l’instant officiel !)</p>
 
@@ -84,7 +84,7 @@
 
     <div class="time">16h30</div>
     <div class="info">
-      <p>Arrivée et installation sur le lieu de réception (le temps de trajet est estimé à 45 minutes depuis la Mairie)</p>
+      <p>Arrivée et installation sur le lieu de réception.</p>
 
       <p><a href="https://maps.app.goo.gl/29sF1wugXurhWvaY8">Itinéraire</a></p>
 
@@ -108,7 +108,7 @@
 
       <p>Le trajet est d'environ 45 minutes est le plus simple pour l’accès sur le site. L'itinéraire de droite vous permettra d’apprécier la vue de la vallée et des gorges d’Allevard avant de prendre la direction de la Vallée des Huiles.</p>
 
-      <p>Le lieu : Domaine de la Pierre à Sel : </p>
+      <p>Le lieu : Domaine de la Pierre à Sel</p>
     </div>
 
     <div class="time">17h30</div>
@@ -127,12 +127,15 @@
 
       <p>Et après le repas, petite soirée tranquille !</p>
 
-      <p>On vous veut en forme pour le lendemain, alors ne prévoit rien de très recherché ce premier soir</p>
+      <p v-if="isMulti">On vous veut en forme pour le lendemain, alors ne prévoit rien de très recherché ce premier soir.</p>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"
+<script setup lang="ts">
+  defineProps<{
+    isMulti: boolean
+  }>()
 </script>
 
 <style scoped>

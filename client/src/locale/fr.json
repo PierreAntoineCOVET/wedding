@@ -4,7 +4,7 @@
     "schedule": "Emploi du temps",
     "info": "Informations",
     "form": "Formulaire",
-    "contact": "Contactes",
+    "contact": "Contacts",
     "admin": "Admin"
   },
   "login": {
@@ -22,17 +22,17 @@
     "searchBy": "Nom de famille"
   },
   "form": {
-    "forUser": "Formullaire pour ",
+    "forUser": "Formulaire pour ",
     "attendency": "Présence",
     "mealChoice": "Choix du repas pour le mardi soir",
     "cheeseMeal": "Fondue Savoyarde",
     "meatMeal": "Plancha de viandes",
     "foodAllergy": "Alergies allimentaires",
-    "music": "Recommendations musicales",
+    "music": "Recommandations musicales",
     "other": "Autre",
     "save": "Enregistrer",
     "saveSuccess": "Enregistré",
-    "saveError": "Erreur lors de l'enregistrements, merci de prévenir ..."
+    "saveError": "Erreur lors de l'enregistrements, merci de prévenir Amandine ou Romain"
   },
   "dayOfWeek": {
     "monday": "Lundi",

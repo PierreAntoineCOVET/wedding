@@ -25,14 +25,14 @@
     "forUser": "Form for ",
     "attendency": "Attendency",
     "mealChoice": "Meal choice for tuesday evening",
-    "cheeseMeal": "Fondue Savoyarde",
-    "meatMeal": "Plancha de viandes",
+    "cheeseMeal": "Cheese fondue",
+    "meatMeal": "Grilled meat mix",
     "foodAllergy": "Food allergies",
     "music": "Music recommendation",
     "other": "Other",
     "save": "Save",
     "saveSuccess": "Saved",
-    "saveError": "Error while saving, please contact ..."
+    "saveError": "Error while saving, please contact Amandine or Romain"
   },
   "dayOfWeek": {
     "monday": "Monday",

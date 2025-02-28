@@ -4,7 +4,7 @@
 
     <p>Tout d’abord, attention à la date ! Nous avons décidé de nous marier mais en SEMAINE ! (oui on aime bien faire les choses différemment).</p>
 
-    <Tuesday v-if="invitationPattern('01000')" />
+    <Tuesday :isMulti="invitationPattern('01100')" v-if="invitationPattern('01000')" />
 
     <Wednesday v-if="invitationPattern('00100')" :isMulti="invitationPattern('01100')" />
 
@@ -14,9 +14,7 @@
 
     <p>
       Notre lieu de réception, ne nous permets pas de recevoir tout le monde en même temps.
-      Certains vont venir de très loin, ils seront présent sur plusieurs jours et hébergés sur place. Pour les
-      locaux, nous vous invitons à revenir partager la journée détente du jeudi si vous êtes disponibles !
-      (merci de le préciser dans votre confirmation de présence).
+      Certains vont venir de très loin, ils seront présent sur plusieurs jours et hébergés sur place.
     </p>
   </div>
   <div v-else>

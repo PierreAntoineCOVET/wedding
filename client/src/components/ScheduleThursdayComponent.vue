@@ -18,7 +18,7 @@
   </div>
 
   <p>
-    Et on profite de la journée ! (qu’on espère ensoleillée) ! (Et les mariés rangeront un peu en fin de
+    Et on profite de la journée, qu’on espère ensoleillée ! (Et les mariés rangeront un peu en fin de
     journée).
   </p>
 </template>
