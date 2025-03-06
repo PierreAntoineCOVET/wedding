@@ -2,6 +2,11 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import mitt from 'mitt'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import '@mdi/font/css/materialdesignicons.css'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 import { createI18n } from 'vue-i18n'
 import FrLocale from './locale/fr.json'
@@ -26,6 +31,26 @@ const i18n = createI18n({
   }
 })
 app.use(i18n);
+
+const vuetify = createVuetify({
+  theme: {
+    themes: {
+      light: {
+        dark: false,
+        colors: {
+          primary: '#d9b0b6',
+          secondary: '#669999'
+        }
+      },
+    },
+  },
+  icons: {
+    defaultSet: 'mdi'
+  },
+  components,
+  directives,
+})
+app.use(vuetify);
 
 app.use(router);
 app.mount('#app');

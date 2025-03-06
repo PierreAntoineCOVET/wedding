@@ -26,8 +26,8 @@
 
     <p>
       <div class="color-container">
-        <div class="color-sample bg-main">blush</div>
-        <div class="color-sample bg-primary">eucalyptus</div>
+        <div class="color-sample bg-primary">blush</div>
+        <div class="color-sample bg-secondary">eucalyptus</div>
       </div>
     </p>
 
@@ -188,10 +188,6 @@
 
   .color-container {
       display: flex;
-  }
-
-  .bg-main {
-    background-color: #d9b0b6;
   }
 
   .color-sample {

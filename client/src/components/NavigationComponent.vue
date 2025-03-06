@@ -1,5 +1,43 @@
 <template>
-  <nav class="navbar navbar-expand-md navigation">
+  <v-toolbar class="bg-primary rounded">
+    <template v-slot:prepend>
+      <v-app-bar-nav-icon id="menu-activator" class="hidden-md-and-up"></v-app-bar-nav-icon>
+    </template>
+
+    <v-toolbar-title><v-btn to="/">{{ $t('nav.home') }}</v-btn></v-toolbar-title>
+
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn to="/schedule">{{ $t('nav.schedule') }}</v-btn>
+      <v-btn to="/info">{{ $t('nav.info') }}</v-btn>
+      <v-btn to="/forms">{{ $t('nav.form') }}</v-btn>
+      <v-btn to="/contact">{{ $t('nav.contact') }}</v-btn>
+      <v-btn to="/admin">{{ $t('nav.admin') }}</v-btn>
+    </v-toolbar-items>
+
+    <Login />
+
+    <v-menu activator="#menu-activator">
+      <v-list>
+        <v-list-item>
+          <v-btn to="/schedule">{{ $t('nav.schedule') }}</v-btn>
+        </v-list-item>
+        <v-list-item>
+          <v-btn flat to="/info">{{ $t('nav.info') }}</v-btn>
+        </v-list-item>
+        <v-list-item>
+          <v-btn flat to="/forms">{{ $t('nav.form') }}</v-btn>
+        </v-list-item>
+        <v-list-item>
+          <v-btn flat to="/contact">{{ $t('nav.contact') }}</v-btn>
+        </v-list-item>
+        <v-list-item>
+          <v-btn flat to="/admin">{{ $t('nav.admin') }}</v-btn>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </v-toolbar>
+
+  <!--<nav class="navbar navbar-expand-md navigation">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -61,7 +99,7 @@
         <Login />
       </div>
     </div>
-  </nav>
+  </nav>-->
 </template>
 
 <script setup lang="ts">
@@ -132,7 +170,7 @@
 </script>
 
 <style scoped lang="scss">
-  .navigation {
+/*  .navigation {
     padding: 1rem 0.5rem;
     background-color: #d9b0b6;
     border-radius: 15px;
@@ -152,5 +190,5 @@
       display: flex;
       flex-direction: column;
     }
-  }
+  }*/
 </style>

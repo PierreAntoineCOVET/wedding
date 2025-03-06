@@ -12,8 +12,8 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "axios": "^1.7.9",
-    "bootstrap": "^5.3.3",
     "lodash.debounce": "^4.0.8",
     "mitt": "^3.0.1",
     "sass": "^1.83.1",
@@ -21,7 +21,8 @@
     "vue": "^3.5.13",
     "vue-i18n": "^11.0.1",
     "vue-router": "^4.5.0",
-    "vue3-toastify": "^0.2.8"
+    "vue3-toastify": "^0.2.8",
+    "vuetify": "^3.7.15"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

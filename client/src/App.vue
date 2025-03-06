@@ -1,11 +1,13 @@
 <template>
-  <div id="nav-container">
-    <NavigationComponent id="always-on-top" />
-  </div>
+  <v-app>
+    <div id="nav-container">
+      <NavigationComponent id="always-on-top" />
+    </div>
 
-  <main class="scroll-container">
-    <RouterView />
-  </main>
+    <main class="scroll-container">
+      <RouterView />
+    </main>
+  </v-app>
 </template>
 
 <script setup lang="ts">
@@ -13,10 +15,6 @@
 </script>
 
 <style lang="scss">
-  $primary: #669999;
-
-  @import "bootstrap/scss/bootstrap";
-
   #always-on-top {
     z-index: 100;
   }
