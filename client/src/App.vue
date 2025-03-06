@@ -11,6 +11,8 @@
 <script setup lang="ts">
   import NavigationComponent from './components/NavigationComponent.vue'
   import 'bootstrap/dist/js/bootstrap.min.js'
+
+  import 'jquery/dist/jquery.slim.min.js'
   import 'bootstrap-maxlength/dist/bootstrap-maxlength.min.js'
 </script>
 
