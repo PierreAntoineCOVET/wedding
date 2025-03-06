@@ -142,7 +142,7 @@
       if (form.value.id === 0) {
         form.value.id = success as number;
       }
-      np
+
       toast(t('form.saveSuccess'), {
         "theme": "colored",
         "type": "success",
