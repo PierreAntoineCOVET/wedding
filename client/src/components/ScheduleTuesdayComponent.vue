@@ -12,7 +12,7 @@
 
       <h6>Parking 1</h6>
 
-      <p>En face de la Mairie (<a href="https://maps.app.goo.gl/gvempB529sf7jMDs9">Google map</a>)</p>
+      <p>En face de la Mairie (<a href="https://maps.app.goo.gl/gvempB529sf7jMDs9" target="_blank">Google map</a>)</p>
 
       <iframe class="hidden-for-phone"
               src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d864.4728007060626!2d5.978232164374966!3d45.343004552113555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDXCsDIwJzM0LjgiTiA1wrA1OCc0MS4xIkU!5e1!3m2!1sfr!2sfr!4v1738705303094!5m2!1sfr!2sfr"
@@ -34,7 +34,7 @@
 
       <h6>Parking 2</h6>
 
-      <p>Dans la même zone proche de la gare SNCF (<a href="https://maps.app.goo.gl/qqHVkFUKVtqCbSC69">Google map</a>)</p>
+      <p>Dans la même zone proche de la gare SNCF (<a href="https://maps.app.goo.gl/qqHVkFUKVtqCbSC69" target="_blank">Google map</a>)</p>
 
       <iframe class="hidden-for-phone"
               src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3457.9348058586625!2d5.976622!3d45.342288999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDXCsDIwJzMyLjIiTiA1wrA1OCczNS44IkU!5e1!3m2!1sen!2sfr!4v1738705752906!5m2!1sen!2sfr"
@@ -56,7 +56,7 @@
 
       <h6>Parking 3</h6>
 
-      <p>Dans la même zone proche de la gare SNCF (2 bornes recharge pour véhicule sont disponibles à cet endroit) (<a href="https://maps.app.goo.gl/hBxKWDyRRGwbHFNu5">Google map</a>)</p>
+      <p>Dans la même zone proche de la gare SNCF (2 bornes recharge pour véhicule sont disponibles à cet endroit) (<a href="https://maps.app.goo.gl/hBxKWDyRRGwbHFNu5" target="_blank">Google map</a>)</p>
 
       <iframe class="hidden-for-phone"
               src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1247.016838721709!2d5.974546415541806!3d45.34253435596964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDXCsDIwJzMzLjEiTiA1wrA1OCczMS43IkU!5e1!3m2!1sen!2sfr!4v1738705993358!5m2!1sen!2sfr"
@@ -86,7 +86,7 @@
     <div class="info">
       <p>Arrivée et installation sur le lieu de réception.</p>
 
-      <p><a href="https://maps.app.goo.gl/29sF1wugXurhWvaY8">Itinéraire</a></p>
+      <p><a href="https://maps.app.goo.gl/29sF1wugXurhWvaY8" target="_blank">Itinéraire</a></p>
 
       <iframe class="hidden-for-phone"
               src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d220991.4200766043!2d5.935501152300208!3d45.4231780484634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x478a53dc75443de1%3A0xc77203245f688d70!2sMairie%20de%20Goncelin%2C%20Place%20de%20la%20mairie%2C%20Goncelin!3m2!1d45.3432812!2d5.977760099999999!4m5!1s0x478bca18377ba5f5%3A0x394bca0a1df9f4b2!2sDomaine%20La%20Pierre%20%C3%A0%20Sel%3A%2045%20couchages%2C%20salle%20de%20r%C3%A9ception%2C%20avec%20Jacuzzis%2C%20sauna%2C%20Le%20Pontet!3m2!1d45.5018308!2d6.2228309!5e1!3m2!1sfr!2sfr!4v1738706501698!5m2!1sfr!2sfr"

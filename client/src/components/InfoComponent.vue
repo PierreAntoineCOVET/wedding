@@ -25,6 +25,13 @@
     </p>
 
     <p>
+      <div class="color-container">
+        <div class="color-sample bg-main">blush</div>
+        <div class="color-sample bg-primary">eucalyptus</div>
+      </div>
+    </p>
+
+    <p>
       Bien que rien ne vous oblige à le suivre, nous sommes décidés à
       ne pas tomber dans le traditionnel costume noir ou les tenues
       guindées ! On vous suggère des tenues légères (lin, coton ou
@@ -91,7 +98,7 @@
 
   <div>
     <h5>Est-ce que je peux dormir sur place ?</h5>
-    <p>
+    <p v-if="hasMultipleDay()">
       Vous avez reçu une invitation sur plusieurs jours, le logement sera disponible sur place. Le lieu
       n’acceptant pas plus de 60 personnes sur place au même moment, vous verrez des invités différents
       en fonction des jours mais vous vous serez là tout du long !
@@ -104,10 +111,10 @@
       Il est possible de loger dans les villes proches si vous ne souhaitez pas repartir en plein milieu de la
       nuit :
       <ul>
-        <li><a href="https://www.facebook.com/labuttardiere/">La Buttardière - Gîte et B&amp;B</a></li>
-        <li><a href="https://www.gitedugrandcucheron.fr/">Gîte du Grand Cucheron</a></li>
-        <li><a href="https://maurienne-outdoor.com/eco-camping/">Hebergement insolites</a></li>
-        <li><a href="https://www.logishotels.com/fr/hotel/logis-hotel-la-cle-des-champs-14456?partid=1535">Hôtel Logis La Clef des Champs (Montmélian 30km)</a></li>
+        <li><a href="https://www.facebook.com/labuttardiere/" target="_blank">La Buttardière - Gîte et B&amp;B</a></li>
+        <li><a href="https://www.gitedugrandcucheron.fr/" target="_blank">Gîte du Grand Cucheron</a></li>
+        <li><a href="https://maurienne-outdoor.com/eco-camping/" target="_blank">Hebergement insolites</a></li>
+        <li><a href="https://www.logishotels.com/fr/hotel/logis-hotel-la-cle-des-champs-14456?partid=1535" target="_blank">Hôtel Logis La Clef des Champs (Montmélian 30km)</a></li>
         <li>et plein d’autres ! N’hésitez pas à nous contacter si vous avez besoin de conseils.</li>
       </ul>
     </p>
@@ -156,20 +163,43 @@
     });
   })
 
-  function invitationPattern(pattern: string): boolean {
+  function hasMultipleDay(): boolean {
     if (!loggedUser.value) {
       return false;
     }
 
-    const userMask = parseInt(loggedUser.value.invitation, 2);
-    const patternMask = parseInt(pattern, 2);
+    const charArray = loggedUser.value.invitation.split('');
+    const numberOfOne = charArray.reduce(
+      (count, char) => {
+        console.log(count);
+        console.log(char);
+        return char === '1' ? ++count : count;
+      },
+      0)
 
-    return (userMask & patternMask) == patternMask;
+    return numberOfOne > 1;
   }
 </script>
 
 <style scoped>
   .title {
     margin-bottom: 1rem;
+  }
+
+  .color-container {
+      display: flex;
+  }
+
+  .bg-main {
+    background-color: #d9b0b6;
+  }
+
+  .color-sample {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+    line-height: 95px;
   }
 </style>

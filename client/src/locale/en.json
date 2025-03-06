@@ -11,7 +11,8 @@
     "loginAs": "logged in as",
     "logout": "Log out",
     "login": "Log in",
-    "userNamePlaceHolder": "User name"
+    "userNamePlaceHolder": "User name",
+    "userLogginError": "Web site might not be fully operational, if the problem persists please contact Amadine or Romain"
   },
   "notfound": "Page not found.",
   "global": {

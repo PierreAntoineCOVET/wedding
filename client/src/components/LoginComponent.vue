@@ -13,6 +13,7 @@
 <script setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
   import { useRouter } from 'vue-router'
+  import { useI18n } from "vue-i18n";
 
   import { UserService } from '../services/UserService'
   import { type User } from '../models/User'
@@ -24,6 +25,8 @@
 
   const router = useRouter();
   const eventBus = inject('eventBus') as any;
+
+  const { t } = useI18n({ useScope: "global" });
 
   onMounted(async () => {
     await router.isReady();
@@ -50,7 +53,7 @@
 
     }
     else {
-      alert('Code incorect');
+      alert(t('login.userLogginError'));
     }
   }
 

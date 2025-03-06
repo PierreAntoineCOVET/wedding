@@ -11,7 +11,8 @@
     "loginAs": "Connecté en tant que",
     "logout": "Deconnexion",
     "login": "Connexion",
-    "userNamePlaceHolder": "Nom d'utilisateur"
+    "userNamePlaceHolder": "Nom d'utilisateur",
+    "userLogginError": "Le site n'est peut-être pas tout a fait finit, si le probleme persiste merci de contacter Amandine ou Romain"
   },
   "notfound": "Page non trouvée.",
   "global": {
