@@ -68,7 +68,7 @@
     confirmed: boolean
   };
 
-  import { defineModel, computed, ref, onMounted } from 'vue'
+  import { defineModel, computed, ref } from 'vue'
   import { toast } from "vue3-toastify";
   import "vue3-toastify/dist/index.css";
   import { useI18n } from "vue-i18n";
@@ -76,14 +76,6 @@
   import { type User } from '../models/User'
   import { type Form, MealChoices } from '../models/Form'
   import { FormService } from "../services/FormService"
-
-  onMounted(() => {
-    $('[maxlength]').maxlength({
-      alwaysShow: true,
-      warningClass: "label label-success",
-      limitReachedClass: "label label-danger",
-    });
-  });
 
   const formService = new FormService();
   const isSaving = ref<boolean>(false);
@@ -150,7 +142,7 @@
       if (form.value.id === 0) {
         form.value.id = success as number;
       }
-
+      np
       toast(t('form.saveSuccess'), {
         "theme": "colored",
         "type": "success",
