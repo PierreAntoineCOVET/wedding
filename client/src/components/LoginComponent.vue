@@ -1,7 +1,15 @@
 <template>
-  <div v-if="!loggedUser" class="loggin-group">
-    <input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" :placeholder="$t('login.userNamePlaceHolder')" />
-    <input type="button" :value="$t('login.login')" @click="authenticate()" class="logging-button btn btn-primary" />
+  <div v-if="!loggedUser" class="main-container">
+    <div class="hidden-md-and-up loggin-group">
+      <v-text-field @keyup.enter="authenticate()" :label="$t('login.userNamePlaceHolder')" min-width="300px" variant="solo"></v-text-field>
+      <v-btn @click.native="authenticate()" icon="mdi-login"></v-btn>
+    </div>
+    <div class="hidden-sm-and-down loggin-group">
+      <v-text-field @keyup.enter="authenticate()" :label="$t('login.userNamePlaceHolder')" background-color="primary" min-width="300px" variant="solo-filled" hide-details ></v-text-field>
+      <v-btn v-on:click="authenticate()">{{ $t('login.login') }}</v-btn>
+      <!--<input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" :placeholder="$t('login.userNamePlaceHolder')" />-->
+      <!--<input type="button" :value="$t('login.login')" @click="authenticate()" class="logging-button btn btn-primary" />-->
+    </div>
   </div>
 
   <div v-else>
@@ -69,14 +77,19 @@
 <style scoped>
   .loggin-group {
       display: flex;
+      height: 90%
   }
 
-  .logging-button {
+  .main-container {
+      align-content: center;
+  }
+
+/*  .logging-button {
     margin-left: 1rem;
   }
 
   .btn,
   .btn:hover {
     color: #fff;
-  }
+  }*/
 </style>
