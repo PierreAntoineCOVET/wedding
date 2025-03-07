@@ -19,9 +19,6 @@
                     hide-details >
       </v-text-field>
       <v-btn @click="authenticate()">{{ $t('login.login') }}</v-btn>
-
-      <!--<input type="text" class="form-control" v-model="loginText" @keyup.enter="authenticate()" :placeholder="$t('login.userNamePlaceHolder')" />-->
-      <!--<input type="button" :value="$t('login.login')" @click="authenticate()" class="logging-button btn btn-primary" />-->
     </div>
   </div>
 
@@ -96,13 +93,4 @@
   .main-container {
       align-content: center;
   }
-
-/*  .logging-button {
-    margin-left: 1rem;
-  }
-
-  .btn,
-  .btn:hover {
-    color: #fff;
-  }*/
 </style>
