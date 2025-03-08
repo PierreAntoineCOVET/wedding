@@ -9,6 +9,8 @@
 </template>
 
 <script setup lang="ts">
+  import 'bootstrap/dist/js/bootstrap.min.js'
+
   import NavigationComponent from './components/NavigationComponent.vue'
 </script>
 
