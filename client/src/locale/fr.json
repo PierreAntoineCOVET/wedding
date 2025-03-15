@@ -12,7 +12,7 @@
     "logout": "Deconnexion",
     "login": "Connexion",
     "userNamePlaceHolder": "Nom d'utilisateur",
-    "userLogginError": "Le site n'est peut-être pas tout a fait finit, si le probleme persiste merci de contacter Amandine ou Romain"
+    "userLogginError": "Les noms d'utilisateurs sont sous la forme prenom.nom sans accents ni tirrets : Marie-Cloé Démo deviens mariecloe.demo"
   },
   "notfound": "Page non trouvée.",
   "global": {

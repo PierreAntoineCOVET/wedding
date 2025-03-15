@@ -1,5 +1,5 @@
-@Server_HostAddress = http://localhost:5000/api
-#@Server_HostAddress = http://amandineetromain.fr/api
+#@Server_HostAddress = http://localhost:5000/api
+@Server_HostAddress = http://amandineetromain.fr/api
 
 GET {{Server_HostAddress}}/user/users
 Accept: application/json
@@ -20,16 +20,16 @@ POST {{Server_HostAddress}}/user
 Content-Type: application/json
 
 {
-  "firstName": "PA",
-  "lastName": "COVET",
-  "userName": "pa.covet",
+  "firstName": "test",
+  "lastName": "test",
+  "userName": "test.test",
   "role": 1,
-  "Invitation": "11111"
+  "invitation": "11111"
 }
 
 ###
 
-DELETE {{Server_HostAddress}}/user/3
+DELETE {{Server_HostAddress}}/user/56
 Content-Type: application/json
 
 ###
@@ -57,7 +57,7 @@ Accept: application/json
 
 ###
 
-GET {{Server_HostAddress}}/user/search?query=cov
+GET {{Server_HostAddress}}/user/search?query=arn
 Accept: application/json
 
 ###

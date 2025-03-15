@@ -12,7 +12,7 @@
     "logout": "Log out",
     "login": "Log in",
     "userNamePlaceHolder": "User name",
-    "userLogginError": "Web site might not be fully operational, if the problem persists please contact Amadine or Romain"
+    "userLogginError": "User names are are of type firstname.lastname witouh dashes or accents: Marie-Cloé Démo become mariecloe.demo"
   },
   "notfound": "Page not found.",
   "global": {
