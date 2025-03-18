@@ -65,6 +65,13 @@
       Casquette, bretelles, nœud papillon, cravate à fleur, ombrelles, sneakers … ! Tout ça
       on valide et encourage !
     </p>
+    <p>
+      <img src="../assets/1.jpg" alt="accessory 1" width="400">
+      <img src="../assets/2.jpg" alt="accessory 2" width="400">
+      <img src="../assets/3.jpg" alt="accessory 3" width="400">
+      <img src="../assets/4.jpg" alt="accessory 4" width="400">
+      <img src="../assets/5.jpg" alt="accessory 5" width="400">
+    </p>
   </div>
 
   <div>
@@ -92,7 +99,7 @@
       Bien que ça reste à confirmer, une jeune fille habituée à faire du babysitting devrait être présente
       pour s’occuper des enfants. Attention on lui demande surtout de surveiller qu’ils soient bien présents
       sur le site et de s’amuser avec eux mais vos enfants restent sous votre responsabilité (surtout pour
-      les moins de 3 ans).
+      les moins de 5 ans).
     </p>
   </div>
 
@@ -103,11 +110,11 @@
       n’acceptant pas plus de 60 personnes sur place au même moment, vous verrez des invités différents
       en fonction des jours mais vous vous serez là tout du long !
     </p>
-    <p>
+    <p v-if="!hasMultipleDay()">
       Il existe des logements sur place, mais ils seront occupés par les personnes qui viennent de loin, les
       mariés et leurs témoins.
     </p>
-    <p>
+    <p v-if="!hasMultipleDay()">
       Il est possible de loger dans les villes proches si vous ne souhaitez pas repartir en plein milieu de la
       nuit :
       <ul>
@@ -120,7 +127,7 @@
     </p>
   </div>
 
-  <div>
+  <div v-if="hasMultipleDay()">
     <h5>Les logements :</h5>
     <p>
       A l’entrée de chaque gîte se trouvera une carte avec l’emplacement des chambres et vos noms inscrits
@@ -171,8 +178,6 @@
     const charArray = loggedUser.value.invitation.split('');
     const numberOfOne = charArray.reduce(
       (count, char) => {
-        console.log(count);
-        console.log(char);
         return char === '1' ? ++count : count;
       },
       0)
