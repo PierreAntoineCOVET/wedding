@@ -139,7 +139,11 @@
       + form.value.confirmedDays.substring(indexOfWeek + 1);
   }
 
-  function clearForm(userId: number, evet: Event) {
+  function clearForm(userId: number, event: Event) {
+    if (!event) {
+      return;
+    }
+
     const target = event.target as HTMLInputElement;
     if (!target.checked) {
       return;
