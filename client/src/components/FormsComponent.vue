@@ -65,7 +65,7 @@
     const userForm = savedForm ?? {
         id: 0,
         userId: user.id,
-        confirmedDays: "00000",
+        confirmedDays: "000000",
         mealChoice: MealChoices.None,
         foodAllergy: "",
         musicRecommendation: "",

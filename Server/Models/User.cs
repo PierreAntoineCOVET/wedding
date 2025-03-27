@@ -14,7 +14,8 @@
         Tuesday = 8,
         Wednesday = 4,
         Thursday = 2,
-        Friday = 1
+        Friday = 1,
+        Never = 32
     }
 
     public class User

@@ -6,7 +6,7 @@
         <div class="form-item">
           <div class="form-label">{{ $t('form.attendency') }}</div>
           <div class="attendency-container">
-            <div class="attendency" v-for="attendency in attendencies">
+            <div v-if="!absent" class="attendency" v-for="attendency in attendencies">
               <label class="form-check-label">
                 {{ $t(attendency.dayOfWeek) }}
                 <input type="checkbox" class="form-check-input" :checked="attendency.confirmed"
@@ -14,8 +14,15 @@
               </label>
             </div>
           </div>
+          <div class="attendency-never">
+            <label class="form-check-label">
+              {{ $t('dayOfWeek.never') }}
+              <input type="checkbox" class="form-check-input" v-model="absent"
+                     @change="clearForm(user.id, $event)"/>
+            </label>
+          </div>
         </div>
-        <div class="form-item" v-if="user.invitation[1] == '1' && form.confirmedDays[1] == '1'">
+        <div class="form-item" v-if="user.invitation[1] == '1' && form.confirmedDays[1] == '1' && !absent">
           <div class="form-label">{{ $t('form.mealChoice') }}</div>
           <div>
             <label class="meal form-check-label">
@@ -30,13 +37,13 @@
             </label>
           </div>
         </div>
-        <div class="form-item">
+        <div class="form-item" v-if="!absent">
           <div class="form-label">{{ $t('form.foodAllergy') }}</div>
           <input type="text" class="form-control" maxlength="300" v-model="form.foodAllergy" />
         </div>
       </div>
       <div class="wide-right">
-        <div class="form-item">
+        <div v-if="!absent" class="form-item">
           <div class="form-label">{{ $t('form.music') }}</div>
           <input type="text" class="form-control" maxlength="300" v-model="form.musicRecommendation" />
         </div>
@@ -80,44 +87,45 @@
   const formService = new FormService();
   const isSaving = ref<boolean>(false);
   const { t } = useI18n({ useScope: "global" });
+  const absent = ref<boolean>(form.value.confirmedDays[0] === "1");
 
   const attendencies = computed<Attendency[]>(
     () => {
       const attendency = [];
 
-      if (user.value.invitation[0] === "1") {
-        attendency.push({
-          dayOfWeek: "dayOfWeek.monday",
-          indexOfWeek: 0,
-          confirmed: form.value.confirmedDays[0] === "1"
-        });
-      }
       if (user.value.invitation[1] === "1") {
         attendency.push({
-          dayOfWeek: "dayOfWeek.tuesday",
+          dayOfWeek: "dayOfWeek.monday",
           indexOfWeek: 1,
           confirmed: form.value.confirmedDays[1] === "1"
         });
       }
       if (user.value.invitation[2] === "1") {
         attendency.push({
-          dayOfWeek: "dayOfWeek.wednesday",
+          dayOfWeek: "dayOfWeek.tuesday",
           indexOfWeek: 2,
           confirmed: form.value.confirmedDays[2] === "1"
         });
       }
       if (user.value.invitation[3] === "1") {
         attendency.push({
-          dayOfWeek: "dayOfWeek.thursday",
+          dayOfWeek: "dayOfWeek.wednesday",
           indexOfWeek: 3,
           confirmed: form.value.confirmedDays[3] === "1"
         });
       }
       if (user.value.invitation[4] === "1") {
         attendency.push({
-          dayOfWeek: "dayOfWeek.friday",
+          dayOfWeek: "dayOfWeek.thursday",
           indexOfWeek: 4,
           confirmed: form.value.confirmedDays[4] === "1"
+        });
+      }
+      if (user.value.invitation[5] === "1") {
+        attendency.push({
+          dayOfWeek: "dayOfWeek.friday",
+          indexOfWeek: 5,
+          confirmed: form.value.confirmedDays[5] === "1"
         });
       }
 
@@ -129,6 +137,18 @@
     form.value.confirmedDays = form.value.confirmedDays.substring(0, indexOfWeek)
       + (currentValue == '0' ? '1' : '0')
       + form.value.confirmedDays.substring(indexOfWeek + 1);
+  }
+
+  function clearForm(userId: number, evet: Event) {
+    const target = event.target as HTMLInputElement;
+    if (!target.checked) {
+      return;
+    }
+
+    form.value.confirmedDays = '100000';
+    form.value.mealChoice = 0;
+    form.value.foodAllergy = '';
+    form.value.musicRecommendation = '';
   }
 
   async function save() {
@@ -189,6 +209,10 @@
 
   .form-container {
       margin-bottom: 1rem;
+  }
+
+  .attendency-never {
+      margin-top: .5rem;
   }
 
   @media (max-width: 1024px) {

@@ -25,7 +25,7 @@ namespace Server.DTOs
             {
                 Id = formModel.Id,
                 UserId = formModel.UserId,
-                ConfirmedDays = Convert.ToString((int)formModel.ConfirmedDays, 2).PadLeft(5, '0'),
+                ConfirmedDays = Convert.ToString((int)formModel.ConfirmedDays, 2).PadLeft(6, '0'),
                 FoodAllergy = formModel.FoodAllergy,
                 MealChoice = formModel.MealChoice,
                 MusicRecommendation = formModel.MusicRecommendation,
