@@ -18,9 +18,11 @@ namespace Server.DTOs
 
         public required string Invitation { get; set; }
 
-        public static User FromModel(UserModel userModel)
+        public Form? Form { get; set; }
+
+        public static User FromModel(UserModel userModel, bool includeForm = false)
         {
-            return new User
+            var user = new User
             {
                 Id = userModel.Id,
                 UserName = userModel.UserName,
@@ -29,6 +31,17 @@ namespace Server.DTOs
                 Role = userModel.Role,
                 Invitation = Convert.ToString((int)userModel.Invitation, 2).PadLeft(6, '0')
             };
+
+            if (includeForm)
+            {
+                var form = userModel.Form != null
+                    ? Form.FromModel(userModel.Form)
+                    : null;
+
+                user.Form = form;
+            }
+
+            return user;
         }
 
         public static UserModel ToModel(User user)
