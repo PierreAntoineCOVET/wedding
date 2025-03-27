@@ -35,6 +35,10 @@
 
     if (loggedUserString) {
       loggedUser.value = JSON.parse(loggedUserString);
+
+      if (loggedUser.value!.invitation.length === 5) {
+        unconnect();
+      }
     }
   })
 
