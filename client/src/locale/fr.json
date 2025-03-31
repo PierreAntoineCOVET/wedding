@@ -42,5 +42,13 @@
     "thursday": "Jeudi",
     "friday": "Vendredi",
     "never": "Ne viens pas"
+  },
+  "admin": {
+    "unAnsweredHeader": "Nombre de gens sans réponse :",
+    "notCommingHeader": "Nombre de gens qui ne viennent pas :",
+    "commingHeader": "Nombre de gens qui viennent :",
+    "unAnswered": "Sans réponses",
+    "notComming": "Ne viennent pas",
+    "comming": "Viennent (les bons !)"
   }
 }

@@ -22,7 +22,7 @@
             </label>
           </div>
         </div>
-        <div class="form-item" v-if="user.invitation[1] == '1' && form.confirmedDays[1] == '1' && !absent">
+        <div class="form-item" v-if="user.invitation[2] == '1' && form.confirmedDays[2] == '1' && !absent">
           <div class="form-label">{{ $t('form.mealChoice') }}</div>
           <div>
             <label class="meal form-check-label">

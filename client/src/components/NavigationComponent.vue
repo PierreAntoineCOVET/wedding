@@ -125,6 +125,8 @@
         return ActivePage.Form;
       case '/contact':
         return ActivePage.Contact;
+      case '/admin':
+        return ActivePage.Admin;
       default:
         return null;
     }
