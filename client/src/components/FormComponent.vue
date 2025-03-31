@@ -27,12 +27,12 @@
           <div>
             <label class="meal form-check-label">
               {{ $t('form.cheeseMeal') }}
-              <input type="radio" class="form-check-input" name="user.id"
+              <input type="radio" class="form-check-input" :name="user.id"
                      :value="MealChoices.Cheese" v-model="form.mealChoice" />
             </label>
             <label class="meal form-check-label">
               {{ $t('form.meatMeal') }}
-              <input type="radio" class="form-check-input" name="user.id"
+              <input type="radio" class="form-check-input" :name="user.id"
                      :value="MealChoices.Meat" v-model="form.mealChoice" />
             </label>
           </div>
