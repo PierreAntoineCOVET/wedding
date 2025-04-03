@@ -23,7 +23,27 @@
     </p>
 
     <p>
-      On vous conseille d’arriver aux alentours de 10h45
+      <iframe class="hidden-for-phone"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15818.382470730543!2d6.2067910459092435!3d45.50360879531488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bca18377ba5f5%3A0x394bca0a1df9f4b2!2sDomaine%20La%20Pierre%20%C3%A0%20Sel%3A%2045%20couchages%2C%20salle%20de%20r%C3%A9ception%2C%20avec%20Jacuzzis%2C%20sauna!5e0!3m2!1sfr!2sfr!4v1743708462371!5m2!1sfr!2sfr"
+              width="800"
+              height="600"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+      <iframe class="hidden-for-desktop"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15818.382470730543!2d6.2067910459092435!3d45.50360879531488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bca18377ba5f5%3A0x394bca0a1df9f4b2!2sDomaine%20La%20Pierre%20%C3%A0%20Sel%3A%2045%20couchages%2C%20salle%20de%20r%C3%A9ception%2C%20avec%20Jacuzzis%2C%20sauna!5e0!3m2!1sfr!2sfr!4v1743708462371!5m2!1sfr!2sfr"
+              width="350"
+              height="300"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </p>
+
+    <p>
+      On vous conseille d’arriver aux alentours de 10h45, mais vous pouvez venir plutôt si vous voulez prendre le petit déjeuner avec nous.
     </p>
   </div>
 

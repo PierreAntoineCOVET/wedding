@@ -41,7 +41,7 @@
     "wednesday": "Mercredi",
     "thursday": "Jeudi",
     "friday": "Vendredi",
-    "never": "Ne viens pas"
+    "never": "N'assitera pas"
   },
   "admin": {
     "unAnsweredHeader": "Nombre de gens sans réponse :",
