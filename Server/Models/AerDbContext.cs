@@ -8,14 +8,8 @@ namespace Server.Models
 
         public DbSet<Form> Forms { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        public AerDbContext(DbContextOptions<AerDbContext> options) : base(options)
         {
-            /// For applying migrations
-            //var connectionString = "server=localhost;user=root;database=aerdb;password=password;";
-            var connectionString = "server=aerdb;user=root;database=aerdb;password=password;";
-            var serverVersion = ServerVersion.AutoDetect(connectionString);
-
-            options.UseMySql(connectionString, serverVersion);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,7 +33,7 @@ namespace Server.Models
                     .HasMaxLength(100);
 
                 entity.Property(user => user.Invitation)
-                    .HasColumnType("INT");
+                    .HasColumnType("integer");
 
                 entity.HasOne(user => user.Form)
                     .WithOne(form => form.User)

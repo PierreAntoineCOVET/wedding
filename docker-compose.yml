@@ -9,6 +9,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
 # Port should binded to 80 not 5000
     ports:
       - 5000:8080
@@ -16,35 +21,25 @@ services:
       - myNetwork
 
   db:
-    image: mysql:8.0
+    image: postgres:17
     hostname: 'aerdb'
     environment:
-      MYSQL_ROOT_PASSWORD: 'password'
-      MYSQL_DATABASE: 'db'
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    command: -p ${DB_PORT}
     expose:
-      - '3306'
+      - '${DB_PORT}'
 # Port to localhost should not be on prod
     ports:
-      - 3306:3306
+      - ${DB_PORT}:${DB_PORT}
     volumes:
-      - my-db:/var/lib/mysql
-    networks:
-      - myNetwork
-      
-# PhpMyAdmin container should not be on prod
-  phpMyAdmin:
-    image: phpmyadmin/phpmyadmin:5.2
-    hostname: 'phpmyadmin'
-    environment:
-      - PMA_HOST=aerdb
-      - PMA_PORT=3306
-    ports:
-      - 8080:80
+      - aer-pgdata:/var/lib/postgresql/data
     networks:
       - myNetwork
 
 volumes:
-  my-db:
+  aer-pgdata:
     external: true
 
 networks:

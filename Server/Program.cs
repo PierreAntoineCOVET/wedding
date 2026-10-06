@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,19 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<AerDbContext>();
+builder.Services.AddDbContext<AerDbContext>(options =>
+{
+    var connectionString = new NpgsqlConnectionStringBuilder
+    {
+        Host = GetRequiredSetting("DB_HOST"),
+        Port = int.Parse(GetRequiredSetting("DB_PORT")),
+        Database = GetRequiredSetting("DB_NAME"),
+        Username = GetRequiredSetting("DB_USER"),
+        Password = GetRequiredSetting("DB_PASSWORD")
+    }.ConnectionString;
+
+    options.UseNpgsql(connectionString);
+});
 
 var app = builder.Build();
 
@@ -43,6 +56,10 @@ app.Map("api/{**slug}", HandleApiFallback);
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+string GetRequiredSetting(string key) =>
+    builder.Configuration[key]
+    ?? throw new InvalidOperationException($"Missing required configuration value '{key}'.");
 
 Task HandleApiFallback(HttpContext context)
 {
