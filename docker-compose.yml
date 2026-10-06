@@ -11,11 +11,10 @@ x-server: &server
     DB_NAME: ${DB_NAME}
     DB_USER: ${DB_USER}
     DB_PASSWORD: ${DB_PASSWORD}
-# Port should binded to 80 not 5000
   ports:
     - 5000:8080
   networks:
-    - myNetwork
+    - wedding
 
 services:
 
@@ -31,12 +30,21 @@ services:
 
   server-prod:
     <<: *server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aerserver.rule=Host(`amandineetromain.fr`)"
+      - "traefik.http.routers.aerserver.entrypoints=websecure"
+      - "traefik.http.routers.aerserver.tls.certresolver=myresolver"
+      - "traefik.docker.network=traefik"
     container_name: wedding-server
     profiles:
       - prod
     environment:
       <<: *server-environment
       ASPNETCORE_ENVIRONMENT: Production
+    networks:
+      - wedding
+      - traefik
 
   db:
     profiles:
@@ -50,17 +58,19 @@ services:
     command: -p ${DB_PORT}
     expose:
       - '${DB_PORT}'
-# Port to localhost should not be on prod
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:
       - aer-pgdata:/var/lib/postgresql/data
     networks:
-      - myNetwork
+      - wedding
 
 volumes:
   aer-pgdata:
     external: true
 
 networks:
-  myNetwork:
+  wedding:
+    external: true
+  traefik:
+    external: true
