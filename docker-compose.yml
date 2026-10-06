@@ -1,26 +1,46 @@
+x-server: &server
+  image: ${DOCKER_REGISTRY-}server
+  hostname: 'aerserver'
+  build:
+    context: .
+    dockerfile: Server/Dockerfile
+  environment: &server-environment
+    ASPNETCORE_HTTP_PORTS: 8080
+    DB_HOST: ${DB_HOST}
+    DB_PORT: ${DB_PORT}
+    DB_NAME: ${DB_NAME}
+    DB_USER: ${DB_USER}
+    DB_PASSWORD: ${DB_PASSWORD}
+# Port should binded to 80 not 5000
+  ports:
+    - 5000:8080
+  networks:
+    - myNetwork
+
 services:
 
-  server:
-    image: ${DOCKER_REGISTRY-}server
-    hostname: 'aerserver'
-    build:
-      context: .
-      dockerfile: Server/Dockerfile
+  server-dev:
+    <<: *server
+    profiles:
+      - dev
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-# Port should binded to 80 not 5000
-    ports:
-      - 5000:8080
-    networks:
-      - myNetwork
+      <<: *server-environment
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - db
+
+  server-prod:
+    <<: *server
+    container_name: wedding-server
+    profiles:
+      - prod
+    environment:
+      <<: *server-environment
+      ASPNETCORE_ENVIRONMENT: Production
 
   db:
+    profiles:
+      - dev
     image: postgres:17
     hostname: 'aerdb'
     environment:
