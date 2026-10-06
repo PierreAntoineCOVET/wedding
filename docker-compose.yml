@@ -13,8 +13,6 @@ x-server: &server
     DB_PASSWORD: ${DB_PASSWORD}
   ports:
     - 5000:8080
-  networks:
-    - wedding
 
 services:
 
@@ -35,16 +33,43 @@ services:
       - "traefik.http.routers.aerserver.rule=Host(`amandineetromain.fr`)"
       - "traefik.http.routers.aerserver.entrypoints=websecure"
       - "traefik.http.routers.aerserver.tls.certresolver=myresolver"
-      - "traefik.docker.network=traefik"
+      - "traefik.docker.network=public"
     container_name: wedding-server
+    restart: unless-stopped
     profiles:
       - prod
+    depends_on:
+      wedding-db-init:
+        condition: service_completed_successfully
     environment:
       <<: *server-environment
       ASPNETCORE_ENVIRONMENT: Production
     networks:
-      - wedding
-      - traefik
+      - public
+      - internal
+
+  # Prod only: one-shot provisioning of the wedding role + database on the external PostgreSQL
+  # server, connecting as its admin role (DB_ADMIN_USER / DB_ADMIN_PASSWORD). Exits early when the
+  # database already exists; server-prod starts only after it completes successfully.
+  wedding-db-init:
+    profiles:
+      - prod
+    image: postgres:17
+    container_name: wedding-db-init
+    restart: "no"
+    entrypoint: ["bash", "/init/01-create-database.sh"]
+    environment:
+      PGHOST: ${DB_HOST}
+      PGPORT: ${DB_PORT}
+      PGPASSWORD: ${DB_ADMIN_PASSWORD:-}
+      DB_ADMIN_USER: ${DB_ADMIN_USER:-}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./infra/postgres/init:/init:ro
+    networks:
+      - internal
 
   db:
     profiles:
@@ -62,15 +87,17 @@ services:
       - ${DB_PORT}:${DB_PORT}
     volumes:
       - aer-pgdata:/var/lib/postgresql/data
-    networks:
-      - wedding
 
 volumes:
   aer-pgdata:
     external: true
 
+# Dev services use the project's default network. Prod uses `public` (shared with Traefik) and
+# `internal` (no internet egress, shared with the PostgreSQL server), created by Compose with fixed
+# names so every app included by the server master compose declares them identically.
 networks:
-  wedding:
-    external: true
-  traefik:
-    external: true
+  public:
+    name: public
+  internal:
+    name: internal
+    internal: true
